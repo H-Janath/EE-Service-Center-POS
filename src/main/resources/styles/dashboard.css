@@ -1,0 +1,10 @@
+.header-topic{
+    -fx-text-fill: white;
+}
+.btn{
+    -fx-background-color: #39C237;
+    -fx-border-color:black;
+}
+.btn:hover{
+    -fx-background-color: #B9DEB9;
+}

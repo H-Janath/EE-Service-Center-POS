@@ -9,17 +9,16 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="776.0" prefWidth="1235.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="contoroller.LoginFormController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="776.0" prefWidth="1235.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="contoroller.LoginFormController">
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: B9DEB9;" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="331.0" layoutY="183.0" text="Loging" AnchorPane.leftAnchor="331.0" AnchorPane.rightAnchor="767.0">
+            <Label fx:id="Logging" layoutX="331.0" layoutY="183.0" text="Loging" AnchorPane.leftAnchor="331.0" AnchorPane.rightAnchor="767.0">
                <font>
                   <Font name="Barlow Condensed SemiBold" size="45.0" />
                </font>
             </Label>
-            <Hyperlink layoutX="331.0" layoutY="489.0" text="Forget password?" AnchorPane.leftAnchor="331.0" />
+            <Hyperlink layoutX="331.0" layoutY="489.0" onAction="#ForgetpasswordOnAction" text="Forget password?" AnchorPane.leftAnchor="331.0" />
             <JFXButton layoutX="331.0" layoutY="541.0" prefHeight="44.0" prefWidth="164.0" style="-fx-background-color: D9D9D9;" text="Login" AnchorPane.leftAnchor="331.0">
                <font>
                   <Font size="24.0" />

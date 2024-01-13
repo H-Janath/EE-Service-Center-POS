@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="779.0" prefWidth="1345.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <children>
+                <BorderPane layoutX="314.0" layoutY="261.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <left>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <AnchorPane layoutX="-1.0" layoutY="206.0" prefHeight="779.0" prefWidth="245.0" style="-fx-background-color: #39C237;" styleClass="nav-form" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-44.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <AnchorPane prefHeight="87.0" prefWidth="222.0" style="-fx-background-color: black;" styleClass="nav-form2" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <children>
+                                                <Label layoutX="39.0" layoutY="30.0" style="-fx-font-size: 19; -fx-text-fill: white;" styleClass="header-topic" text="E &amp; E Service center" />
+                                            </children>
+                                        </AnchorPane>
+                              <JFXButton layoutX="9.0" layoutY="147.0" prefHeight="62.0" prefWidth="227.0" styleClass="btn" stylesheets="@../styles/dashboard.css" text="MENU">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="29.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton layoutX="10.0" layoutY="366.0" prefHeight="62.0" prefWidth="227.0" styleClass="btn" stylesheets="@../styles/dashboard.css" text="ORDERS">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="29.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton layoutX="9.0" layoutY="291.0" prefHeight="62.0" prefWidth="227.0" styleClass="btn" stylesheets="@../styles/dashboard.css" text="CUSTOMERS">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="29.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton layoutX="10.0" layoutY="218.0" prefHeight="62.0" prefWidth="227.0" styleClass="btn" stylesheets="@../styles/dashboard.css" text="INVENTORY">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="29.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton layoutX="10.0" layoutY="441.0" prefHeight="62.0" prefWidth="227.0" styleClass="btn" stylesheets="@../styles/dashboard.css" text="USERS">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="29.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton layoutX="10.0" layoutY="515.0" prefHeight="62.0" prefWidth="227.0" styleClass="btn" stylesheets="@../styles/dashboard.css" text="REPORT">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="29.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton layoutX="10.0" layoutY="699.0" prefHeight="58.0" prefWidth="221.0" style="-fx-background-color: #39C237; -fx-border-color: BLACK;" text="Sign out" AnchorPane.bottomAnchor="22.0">
+                                 <font>
+                                    <Font size="19.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton layoutX="10.0" layoutY="593.0" prefHeight="62.0" prefWidth="227.0" styleClass="btn" stylesheets="@../styles/dashboard.css" text="ADD ITEM">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="29.0" />
+                                 </font>
+                              </JFXButton>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </AnchorPane>
+                    </left>
+                    <center>
+                        <AnchorPane prefHeight="779.0" prefWidth="450.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <AnchorPane layoutX="32.0" layoutY="83.0" prefHeight="779.0" prefWidth="1113.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <AnchorPane layoutX="50.0" layoutY="26.0" prefHeight="240.0" prefWidth="1039.0" style="-fx-background-color: #39C237;" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="26.0">
+                                            <styleClass>
+                                                <String fx:value="radius" />
+                                                <String fx:value="white-bg" />
+                                                <String fx:value="shadow" />
+                                            </styleClass>
+                                 <children>
+                                    <ComboBox layoutX="58.0" layoutY="39.0" prefWidth="150.0" />
+                                    <ComboBox layoutX="265.0" layoutY="39.0" prefWidth="150.0" />
+                                    <JFXTextArea layoutX="58.0" layoutY="105.0" prefHeight="91.0" prefWidth="558.0">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font></JFXTextArea>
+                                    <Label layoutX="58.0" layoutY="11.0" text="Category">
+                                       <font>
+                                          <Font size="19.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="265.0" layoutY="11.0" text="Item">
+                                       <font>
+                                          <Font size="19.0" />
+                                       </font>
+                                    </Label>
+                                    <Button layoutX="904.0" layoutY="17.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="97.0" text="ADD" AnchorPane.rightAnchor="38.0" />
+                                    <Button layoutX="904.0" layoutY="70.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="97.0" text="UPDATE" AnchorPane.rightAnchor="38.0" />
+                                    <Button layoutX="904.0" layoutY="121.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="97.0" text="CANCEL" AnchorPane.rightAnchor="38.0" />
+                                    <Button layoutX="904.0" layoutY="174.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="97.0" text="PLACE" AnchorPane.rightAnchor="38.0" />
+                                    <Label fx:id="orderIdlbl" layoutX="741.0" layoutY="165.0" prefHeight="59.0" prefWidth="139.0" AnchorPane.rightAnchor="159.0">
+                                       <font>
+                                          <Font size="22.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                        </AnchorPane>
+                                        <AnchorPane layoutX="50.0" layoutY="281.0" prefHeight="484.0" prefWidth="1036.0" style="-fx-background-color: #39C237;" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="281.0">
+                                            <styleClass>
+                                                <String fx:value="radius" />
+                                                <String fx:value="white-bg" />
+                                                <String fx:value="shadow" />
+                                            </styleClass>
+                                 <children>
+                                    <JFXTreeTableView layoutX="27.0" layoutY="28.0" prefHeight="400.0" prefWidth="981.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="28.0">
+                                       <columns>
+                                          <TreeTableColumn prefWidth="239.0" text="Inventory_id" />
+                                          <TreeTableColumn prefWidth="263.0" text="Fault" />
+                                          <TreeTableColumn prefWidth="263.0" text="Category" />
+                                          <TreeTableColumn prefWidth="263.0" text="Status" />
+                                       </columns>
+                                    </JFXTreeTableView>
+                                 </children>
+                                        </AnchorPane>
+                                    </children>
+                                </AnchorPane>
+                            </children></AnchorPane>
+                    </center>
+                </BorderPane>
+            </children>
+        </AnchorPane>
+    </children>
+</StackPane>
