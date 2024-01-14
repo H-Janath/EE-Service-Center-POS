@@ -1,10 +1,11 @@
 package entity;
-
-import entity.Orders;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
-
 @Entity
+@Getter
+@Setter
 @Table(name = "Inventory")
 public class Inventory {
 
@@ -34,6 +35,13 @@ public class Inventory {
     @PrePersist
     public void generateCustomId() {
         // Assuming inventoryId is a numeric value
-        this.customId = "I" + String.format("%04d", this.inventoryId);
+        this.customId = "IV" + String.format("%04d", this.inventoryId);
+    }
+
+    public Inventory(String customId, String name, String status, String category) {
+        this.customId = customId;
+        this.name = name;
+        this.status = status;
+        this.category = category;
     }
 }

@@ -43,6 +43,7 @@ public class AddItemFormController {
     }
 
     public void CancelBtnSetOnAction(ActionEvent actionEvent) {
+        clearField();
     }
 
     public void backBtnSetOnAction(ActionEvent actionEvent) throws IOException {
