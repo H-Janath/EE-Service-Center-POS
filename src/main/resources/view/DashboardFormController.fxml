@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="779.0" prefWidth="1345.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="779.0" prefWidth="1345.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="contoroller.DashboardFormContoller">
     <children>
         <AnchorPane prefHeight="200.0" prefWidth="200.0">
             <children>
@@ -28,42 +28,37 @@
                                                 <Label layoutX="39.0" layoutY="30.0" style="-fx-font-size: 19; -fx-text-fill: white;" styleClass="header-topic" text="E &amp; E Service center" />
                                             </children>
                                         </AnchorPane>
-                              <JFXButton layoutX="9.0" layoutY="147.0" prefHeight="62.0" prefWidth="227.0" styleClass="btn" stylesheets="@../styles/dashboard.css" text="MENU">
+                              <JFXButton layoutX="10.0" layoutY="319.0" onAction="#ORDERS_btnSetOnAction" prefHeight="62.0" prefWidth="227.0" styleClass="btn" stylesheets="@../styles/dashboard.css" text="ORDERS">
                                  <font>
                                     <Font name="Berlin Sans FB" size="29.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton layoutX="10.0" layoutY="366.0" prefHeight="62.0" prefWidth="227.0" styleClass="btn" stylesheets="@../styles/dashboard.css" text="ORDERS">
+                              <JFXButton layoutX="9.0" layoutY="244.0" onAction="#CUSTOMERS_btoSetONAction" prefHeight="62.0" prefWidth="227.0" styleClass="btn" stylesheets="@../styles/dashboard.css" text="CUSTOMERS">
                                  <font>
                                     <Font name="Berlin Sans FB" size="29.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton layoutX="9.0" layoutY="291.0" prefHeight="62.0" prefWidth="227.0" styleClass="btn" stylesheets="@../styles/dashboard.css" text="CUSTOMERS">
+                              <JFXButton layoutX="10.0" layoutY="171.0" onAction="#INVENTORY_btnSetOnAction" prefHeight="62.0" prefWidth="227.0" styleClass="btn" stylesheets="@../styles/dashboard.css" text="INVENTORY">
                                  <font>
                                     <Font name="Berlin Sans FB" size="29.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton layoutX="10.0" layoutY="218.0" prefHeight="62.0" prefWidth="227.0" styleClass="btn" stylesheets="@../styles/dashboard.css" text="INVENTORY">
+                              <JFXButton layoutX="10.0" layoutY="394.0" onAction="#USERS_btnSetOnAction" prefHeight="62.0" prefWidth="227.0" styleClass="btn" stylesheets="@../styles/dashboard.css" text="USERS">
                                  <font>
                                     <Font name="Berlin Sans FB" size="29.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton layoutX="10.0" layoutY="441.0" prefHeight="62.0" prefWidth="227.0" styleClass="btn" stylesheets="@../styles/dashboard.css" text="USERS">
+                              <JFXButton layoutX="10.0" layoutY="468.0" onAction="#REPORT_btnSetOnAction" prefHeight="62.0" prefWidth="227.0" styleClass="btn" stylesheets="@../styles/dashboard.css" text="REPORT">
                                  <font>
                                     <Font name="Berlin Sans FB" size="29.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton layoutX="10.0" layoutY="515.0" prefHeight="62.0" prefWidth="227.0" styleClass="btn" stylesheets="@../styles/dashboard.css" text="REPORT">
-                                 <font>
-                                    <Font name="Berlin Sans FB" size="29.0" />
-                                 </font>
-                              </JFXButton>
-                              <JFXButton layoutX="10.0" layoutY="699.0" prefHeight="58.0" prefWidth="221.0" style="-fx-background-color: #39C237; -fx-border-color: BLACK;" text="Sign out" AnchorPane.bottomAnchor="22.0">
+                              <JFXButton layoutX="10.0" layoutY="699.0" onAction="#signoutSetOnaction" prefHeight="58.0" prefWidth="221.0" style="-fx-background-color: #39C237; -fx-border-color: BLACK;" text="Sign out" AnchorPane.bottomAnchor="22.0">
                                  <font>
                                     <Font size="19.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton layoutX="10.0" layoutY="593.0" prefHeight="62.0" prefWidth="227.0" styleClass="btn" stylesheets="@../styles/dashboard.css" text="ADD ITEM">
+                              <JFXButton layoutX="10.0" layoutY="546.0" onAction="#additm_btnSetOnAction" prefHeight="62.0" prefWidth="227.0" styleClass="btn" stylesheets="@../styles/dashboard.css" text="ADD ITEM">
                                  <font>
                                     <Font name="Berlin Sans FB" size="29.0" />
                                  </font>
@@ -76,7 +71,7 @@
                     <center>
                         <AnchorPane prefHeight="779.0" prefWidth="450.0" BorderPane.alignment="CENTER">
                             <children>
-                                <AnchorPane layoutX="32.0" layoutY="83.0" prefHeight="779.0" prefWidth="1113.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <AnchorPane fx:id="menu_pane" layoutX="32.0" layoutY="83.0" prefHeight="779.0" prefWidth="1113.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <AnchorPane layoutX="50.0" layoutY="26.0" prefHeight="240.0" prefWidth="1039.0" style="-fx-background-color: #39C237;" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="26.0">
                                             <styleClass>

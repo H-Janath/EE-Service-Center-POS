@@ -1,5 +1,5 @@
 package dao.utill;
-
+import entity.Item;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
@@ -16,7 +16,7 @@ public class HibernateUtill {
                 .build();
 
         Metadata metadata = new MetadataSources(standardRegistry)
-                .addAnnotatedClass(MyEntity.class)
+                .addAnnotatedClass(Item.class)
                 .getMetadataBuilder()
                 .applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE)
                 .build();
@@ -24,7 +24,6 @@ public class HibernateUtill {
         return metadata.getSessionFactoryBuilder()
                 .build();
     }
-
     public static Session getSession(){
         return sessionFactory.openSession();
     }
