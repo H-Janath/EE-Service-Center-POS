@@ -8,3 +8,6 @@
 .btn:hover{
     -fx-background-color: #B9DEB9;
 }
+.cmbfont{
+    -fx-font-size: 26px;
+}

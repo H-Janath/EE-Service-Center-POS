@@ -10,6 +10,12 @@ import org.hibernate.query.Query;
 import java.util.List;
 
 public class AdditemDaoImpl implements AdditemDao {
+    public List<Item> getAll(){
+        Session session = HibernateUtill.getSession();
+        Query query = session.createQuery("FROM Item");
+        List<Item> itemList = query.list();
+        return itemList;
+    }
     public boolean save(ItemDto itemDto){
         Session session = HibernateUtill.getSession();
         Transaction transaction = session.beginTransaction();

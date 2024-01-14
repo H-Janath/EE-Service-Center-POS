@@ -1,5 +1,8 @@
 package dao.utill;
+import entity.Customer;
+import entity.Inventory;
 import entity.Item;
+import entity.Orders;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
@@ -17,6 +20,9 @@ public class HibernateUtill {
 
         Metadata metadata = new MetadataSources(standardRegistry)
                 .addAnnotatedClass(Item.class)
+                .addAnnotatedClass(Customer.class)
+                .addAnnotatedClass(Inventory.class)
+                .addAnnotatedClass(Orders.class)
                 .getMetadataBuilder()
                 .applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE)
                 .build();

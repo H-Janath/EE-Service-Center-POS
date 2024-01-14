@@ -80,8 +80,8 @@
                                                 <String fx:value="shadow" />
                                             </styleClass>
                                  <children>
-                                    <ComboBox layoutX="58.0" layoutY="39.0" prefWidth="150.0" />
-                                    <ComboBox layoutX="265.0" layoutY="39.0" prefWidth="150.0" />
+                                    <ComboBox fx:id="cmbCategory" layoutX="58.0" layoutY="39.0" prefWidth="150.0" />
+                                    <ComboBox fx:id="cmbItem" layoutX="265.0" layoutY="39.0" prefWidth="150.0" />
                                     <JFXTextArea layoutX="58.0" layoutY="105.0" prefHeight="91.0" prefWidth="558.0">
                                        <font>
                                           <Font size="24.0" />
