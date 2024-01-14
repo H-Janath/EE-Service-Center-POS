@@ -1,8 +1,8 @@
 package entity;
 
-import javax.persistence.*;
-import java.util.List;
+import entity.Orders;
 
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Inventory")
@@ -13,6 +13,9 @@ public class Inventory {
     @Column(name = "inventoryid")
     private Long inventoryId;
 
+    @Column(name = "customId", unique = true, nullable = false)
+    private String customId;
+
     @Column(name = "name")
     private String name;
 
@@ -21,12 +24,16 @@ public class Inventory {
 
     @Column(name = "category")
     private String category;
-    @Column(name = "fault")
-    private String fault;
 
     @ManyToOne
     @JoinColumn(name = "orderId", nullable = false)
     private Orders order;
 
     // Getters and setters
+
+    @PrePersist
+    public void generateCustomId() {
+        // Assuming inventoryId is a numeric value
+        this.customId = "I" + String.format("%04d", this.inventoryId);
+    }
 }

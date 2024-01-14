@@ -17,6 +17,9 @@ public class Orders {
     @Column(name = "OrderId")
     private Long orderId;
 
+    @Column(name = "customId", unique = true, nullable = false)
+    private String customId;
+
     @Column(name = "description")
     private String description;
 
@@ -37,4 +40,10 @@ public class Orders {
     private List<Inventory> inventoryList;
 
     // Getters and setters
+
+    @PrePersist
+    public void generateCustomId() {
+        // Assuming orderId is a numeric value
+        this.customId = "OD" + String.format("%04d", this.orderId);
+    }
 }

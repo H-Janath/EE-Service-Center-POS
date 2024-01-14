@@ -1,5 +1,7 @@
 package entity;
 
+import entity.Orders;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -11,6 +13,9 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "custid")
     private Long custId;
+
+    @Column(name = "customId", unique = true, nullable = false)
+    private String customId;
 
     @Column(name = "name")
     private String name;
@@ -28,4 +33,10 @@ public class Customer {
     private List<Orders> orders;
 
     // Getters and setters
+
+    @PrePersist
+    public void generateCustomId() {
+        // Assuming custId is a numeric value
+        this.customId = "C" + String.format("%04d", this.custId);
+    }
 }
