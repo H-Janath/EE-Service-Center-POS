@@ -1,10 +1,12 @@
 package entity;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
 @Entity
+@NoArgsConstructor
 @Table(name = "Orders")
 public class Orders {
 
@@ -23,13 +25,13 @@ public class Orders {
     private String status;
 
     @Column(name = "amount")
-    private BigDecimal amount;
+    private double amount;
 
     @Column(name = "date")
-    private Date date;
+    private String date;
 
     @ManyToOne
-    @JoinColumn(name = "custid", nullable = false)
+    @JoinColumn(name = "custid")
     private Customer customer;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
@@ -37,13 +39,9 @@ public class Orders {
 
     // Getters and setters
 
-    @PrePersist
-    public void generateCustomId() {
-        // Assuming orderId is a numeric value
-        this.customId = "OD" + String.format("%04d", this.orderId);
-    }
 
-    public Orders(String customId, String description, String status, BigDecimal amount, Date date) {
+
+    public Orders(String customId, String description, String status, double amount, String date) {
         this.customId = customId;
         this.description = description;
         this.status = status;
@@ -83,19 +81,19 @@ public class Orders {
         this.status = status;
     }
 
-    public BigDecimal getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 
-    public Date getDate() {
+    public String  getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String  date) {
         this.date = date;
     }
 

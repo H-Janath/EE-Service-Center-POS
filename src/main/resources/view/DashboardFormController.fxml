@@ -111,22 +111,22 @@
                                           <Font size="19.0" />
                                        </font>
                                     </Label>
-                                    <JFXTextField layoutX="31.0" layoutY="46.0" prefHeight="31.0" prefWidth="222.0" promptText="Customer Name">
+                                    <JFXTextField fx:id="txtCustomername" layoutX="31.0" layoutY="46.0" prefHeight="31.0" prefWidth="222.0" promptText="Customer Name">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </JFXTextField>
-                                    <JFXTextField layoutX="30.0" layoutY="134.0" prefHeight="31.0" prefWidth="224.0" promptText="Contact Number">
+                                    <JFXTextField fx:id="txtContactnum" layoutX="30.0" layoutY="134.0" prefHeight="31.0" prefWidth="224.0" promptText="Contact Number">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </JFXTextField>
-                                    <JFXTextField layoutX="30.0" layoutY="88.0" prefHeight="31.0" prefWidth="224.0" promptText="Email">
+                                    <JFXTextField fx:id="txtEmail" layoutX="30.0" layoutY="88.0" prefHeight="31.0" prefWidth="224.0" promptText="Email">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </JFXTextField>
-                                    <JFXTextField layoutX="30.0" layoutY="180.0" prefHeight="31.0" prefWidth="224.0" promptText="Address">
+                                    <JFXTextField fx:id="txtAddress" layoutX="30.0" layoutY="180.0" prefHeight="31.0" prefWidth="224.0" promptText="Address">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>

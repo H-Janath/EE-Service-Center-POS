@@ -1,14 +1,10 @@
 package contoroller;
-import bo.AddItemBoImpl;
-import bo.DashboardFormBoImpl;
-import bo.InventoryBoimpl;
-import bo.OrderBoimpl;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXTreeTableView;
-import com.jfoenix.controls.RecursiveTreeItem;
+import bo.*;
+import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import dto.CustomerDto;
 import dto.ItemDto;
+import dto.OrderDto;
 import dto.tm.InventoryTm;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,6 +17,8 @@ import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,10 +34,15 @@ public class DashboardFormContoller {
     public TreeTableColumn colOption;
     public JFXTreeTableView<InventoryTm> itemdetailstble;
     public TreeTableColumn colitemcode;
+    public JFXTextField txtCustomername;
+    public JFXTextField txtContactnum;
+    public JFXTextField txtEmail;
+    public JFXTextField txtAddress;
     private AddItemBoImpl addItemBo = new AddItemBoImpl();
     private OrderBoimpl orderBoimpl = new OrderBoimpl();
     private DashboardFormBoImpl dashboardFormBo = new DashboardFormBoImpl();
     private InventoryBoimpl inventoryBoimpl = new InventoryBoimpl();
+    private CustomerBoImpl customerBoImpl = new CustomerBoImpl();
     @FXML
     private AnchorPane menu_pane;
     @FXML
@@ -78,7 +81,35 @@ public class DashboardFormContoller {
             }
         });
     }
+    public void placeBtnSetAction(ActionEvent actionEvent) {
+        String id = customerBoImpl.genertateID();
+        System.out.println(id);
+        boolean savedCustomer=customerBoImpl.saveCustomer(
+                new CustomerDto(
+                        id,
+                        txtCustomername.getText(),
+                        txtEmail.getText(),
+                        txtAddress.getText(),
+                        txtContactnum.getText()
+                )
+        );
+        if(savedCustomer){
+            boolean savedOrder=orderBoimpl.saveOrder(
+                   new OrderDto(
+                           orderIdlbl.getText(),
+                           null,
+                           "PROCESSING",
+                           0.0,
+                           LocalDateTime.now().format(DateTimeFormatter.ofPattern("YYYY-MM-dd")).toString()
+                   ), id
 
+            );
+            if(savedOrder) {
+
+                orderIdlbl.setText(orderBoimpl.genertateID());
+            }
+        }
+    }
     public void ORDERS_btnSetOnAction(ActionEvent actionEvent) {
     }
 
@@ -134,9 +165,7 @@ public class DashboardFormContoller {
         clear();
     }
 
-    public void placeBtnSetAction(ActionEvent actionEvent) {
-        
-    }
+
     public void additm_btnSetOnAction(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)menu_pane.getScene().getWindow();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/AddItemForm.fxml"))));

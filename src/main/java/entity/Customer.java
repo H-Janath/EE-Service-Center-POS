@@ -1,7 +1,14 @@
 package entity;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 @Entity
+@Setter
+@Getter
+@NoArgsConstructor
 @Table(name = "Customer")
 public class Customer {
     @Id
@@ -21,9 +28,13 @@ public class Customer {
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Orders> orders;
 
-    @PrePersist
-    public void generateCustomId() {
-        // Assuming custId is a numeric value
-        this.customId = "C" + String.format("%04d", this.custId);
+
+
+    public Customer(String customId, String name, String email, String address, String contactNo) {
+        this.customId = customId;
+        this.name = name;
+        this.email = email;
+        this.address = address;
+        this.contactNo = contactNo;
     }
 }
