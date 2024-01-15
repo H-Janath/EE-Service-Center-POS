@@ -81,8 +81,20 @@ public class DashboardFormContoller {
                 faultily.setText(inventoryTmTreeItem.getValue().getFault());
             }
         });
+
+    }
+    private void showValidationError(String message) {
+        Tooltip tooltip = new Tooltip(message);
+        txtCustomername.setTooltip(tooltip);
+        txtCustomername.setStyle("-fx-border-color: red;");
+    }
+    private void clearValidationError() {
+        txtCustomername.setTooltip(null);
     }
     public void placeBtnSetAction(ActionEvent actionEvent) {
+        if(inventoryTms.isEmpty()){
+            new Alert(Alert.AlertType.ERROR,"Pleace add item").show();
+        }else {
         String id = customerBoImpl.genertateID();
         boolean savedCustomer=customerBoImpl.saveCustomer(
                 new CustomerDto(
@@ -119,6 +131,7 @@ public class DashboardFormContoller {
                 orderIdlbl.setText(orderBoimpl.genertateID());
             }
         }
+        }
     }
     public void ORDERS_btnSetOnAction(ActionEvent actionEvent) {
     }
@@ -138,34 +151,39 @@ public class DashboardFormContoller {
 
 
     public void addBtnSetAction(ActionEvent actionEvent) {
-        if(inventoryTms.isEmpty()){
-            id = inventoryBoimpl.genertateID();
-        }else{
-            int lastIndex = inventoryTms.size() - 1;
-            InventoryTm lastObject = inventoryTms.get(lastIndex);
-            id = lastObject.getId();
-            int num = Integer.parseInt(id.split("IV")[1]);
-            num++;
-            id =  String.format("IV%04d", num);
+        if (isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Please enter customer details").show();
+        }else if(cmbItem.getSelectionModel().getSelectedItem()==null){
+            new Alert(Alert.AlertType.ERROR, "Please select item").show();
+        }else {
+            if (inventoryTms.isEmpty()) {
+                id = inventoryBoimpl.genertateID();
+            } else {
+                int lastIndex = inventoryTms.size() - 1;
+                InventoryTm lastObject = inventoryTms.get(lastIndex);
+                id = lastObject.getId();
+                int num = Integer.parseInt(id.split("IV")[1]);
+                num++;
+                id = String.format("IV%04d", num);
+            }
+            JFXButton btn = new JFXButton("Delete");
+            InventoryTm inventoryTm = new InventoryTm(
+                    cmbItem.getSelectionModel().getSelectedItem().toString(),
+                    faultily.getText(),
+                    cmbCategory.getSelectionModel().getSelectedItem().toString(),
+                    "Pending",
+                    id,
+                    btn
+            );
+            btn.setOnAction(ActionEvent -> {
+                inventoryTms.remove(inventoryTm);
+                itemdetailstble.refresh();
+            });
+            inventoryTms.add(inventoryTm);
+            RecursiveTreeItem<InventoryTm> treeItem = new RecursiveTreeItem<>(inventoryTms, RecursiveTreeObject::getChildren);
+            itemdetailstble.setRoot(treeItem);
+            itemdetailstble.setShowRoot(false);
         }
-        JFXButton btn = new JFXButton("Delete");
-        InventoryTm inventoryTm = new InventoryTm(
-                cmbItem.getSelectionModel().getSelectedItem().toString(),
-                faultily.getText(),
-                cmbCategory.getSelectionModel().getSelectedItem().toString(),
-                "Pending",
-                id,
-                btn
-        );
-        btn.setOnAction(ActionEvent->{
-            inventoryTms.remove(inventoryTm);
-            itemdetailstble.refresh();
-        });
-        inventoryTms.add(inventoryTm);
-        RecursiveTreeItem<InventoryTm> treeItem = new RecursiveTreeItem<>(inventoryTms, RecursiveTreeObject::getChildren);
-        itemdetailstble.setRoot(treeItem);
-        itemdetailstble.setShowRoot(false);
-
     }
 
     public void updateBtnSetAction(ActionEvent actionEvent) {
@@ -231,5 +249,15 @@ public class DashboardFormContoller {
         for (ItemDto dto : tronicItem) {
             tronicList.add(dto.getName());
         }
+    }
+    private boolean isEmpty(){
+         if(txtCustomername.getText().isEmpty()|| txtContactnum.getText().isEmpty()||txtEmail.getText().isEmpty()||txtAddress.getText().isEmpty()){
+             return true;
+         }
+         return false;
+    }
+
+    public void searchBtnSetAction(ActionEvent actionEvent) {
+
     }
 }

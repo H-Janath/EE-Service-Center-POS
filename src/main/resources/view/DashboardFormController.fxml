@@ -111,17 +111,17 @@
                                           <Font size="19.0" />
                                        </font>
                                     </Label>
-                                    <JFXTextField fx:id="txtCustomername" layoutX="31.0" layoutY="46.0" prefHeight="31.0" prefWidth="222.0" promptText="Customer Name">
+                                    <JFXTextField fx:id="txtCustomername" layoutX="31.0" layoutY="92.0" prefHeight="31.0" prefWidth="222.0" promptText="Customer Name">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="txtContactnum" layoutX="30.0" layoutY="134.0" prefHeight="31.0" prefWidth="224.0" promptText="Contact Number">
+                                    <JFXTextField fx:id="txtContactnum" layoutX="30.0" layoutY="47.0" prefHeight="31.0" prefWidth="224.0" promptText="Contact Number">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="txtEmail" layoutX="30.0" layoutY="88.0" prefHeight="31.0" prefWidth="224.0" promptText="Email">
+                                    <JFXTextField fx:id="txtEmail" layoutX="30.0" layoutY="138.0" prefHeight="31.0" prefWidth="224.0" promptText="Email">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
@@ -131,6 +131,7 @@
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </JFXTextField>
+                                    <Button layoutX="262.0" layoutY="44.0" mnemonicParsing="false" onAction="#searchBtnSetAction" prefHeight="35.0" prefWidth="85.0" text="Search" />
                                  </children>
                                         </AnchorPane>
                                         <AnchorPane layoutX="50.0" layoutY="281.0" prefHeight="484.0" prefWidth="1036.0" style="-fx-background-color: #39C237;" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="281.0">
