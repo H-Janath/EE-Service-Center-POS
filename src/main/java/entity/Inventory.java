@@ -1,11 +1,13 @@
 package entity;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 @Table(name = "Inventory")
 public class Inventory {
 
@@ -20,6 +22,9 @@ public class Inventory {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "fault")
+    private String fault;
+
     @Column(name = "status")
     private String status;
 
@@ -32,16 +37,13 @@ public class Inventory {
 
     // Getters and setters
 
-    @PrePersist
-    public void generateCustomId() {
-        // Assuming inventoryId is a numeric value
-        this.customId = "IV" + String.format("%04d", this.inventoryId);
-    }
 
-    public Inventory(String customId, String name, String status, String category) {
+    public Inventory(String customId, String name, String fault, String status, String category) {
         this.customId = customId;
         this.name = name;
+        this.fault = fault;
         this.status = status;
         this.category = category;
     }
+
 }

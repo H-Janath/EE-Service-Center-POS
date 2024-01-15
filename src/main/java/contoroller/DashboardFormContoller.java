@@ -3,6 +3,7 @@ import bo.*;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import dto.CustomerDto;
+import dto.InventoryDto;
 import dto.ItemDto;
 import dto.OrderDto;
 import dto.tm.InventoryTm;
@@ -83,7 +84,6 @@ public class DashboardFormContoller {
     }
     public void placeBtnSetAction(ActionEvent actionEvent) {
         String id = customerBoImpl.genertateID();
-        System.out.println(id);
         boolean savedCustomer=customerBoImpl.saveCustomer(
                 new CustomerDto(
                         id,
@@ -94,18 +94,28 @@ public class DashboardFormContoller {
                 )
         );
         if(savedCustomer){
-            boolean savedOrder=orderBoimpl.saveOrder(
-                   new OrderDto(
-                           orderIdlbl.getText(),
-                           null,
-                           "PROCESSING",
-                           0.0,
-                           LocalDateTime.now().format(DateTimeFormatter.ofPattern("YYYY-MM-dd")).toString()
-                   ), id
-
+            OrderDto orderDto = new OrderDto(
+                    orderIdlbl.getText(),
+                    null,
+                    "PROCESSING",
+                    0.0,
+                    LocalDateTime.now().format(DateTimeFormatter.ofPattern("YYYY-MM-dd")).toString()
             );
+            boolean savedOrder=orderBoimpl.saveOrder(orderDto, id);
             if(savedOrder) {
-
+                List<InventoryDto> dtoList = new ArrayList<>();
+                for (InventoryTm inventoryTm: inventoryTms){
+                    dtoList.add(
+                            new InventoryDto(
+                                    inventoryTm.getId(),
+                                    inventoryTm.getName(),
+                                    inventoryTm.getFault(),
+                                    inventoryTm.getStatus(),
+                                    inventoryTm.getCategory()
+                            )
+                    );
+                }
+                inventoryBoimpl.saveInventoryItems(dtoList,orderDto.getCustomId());
                 orderIdlbl.setText(orderBoimpl.genertateID());
             }
         }
@@ -155,7 +165,7 @@ public class DashboardFormContoller {
         RecursiveTreeItem<InventoryTm> treeItem = new RecursiveTreeItem<>(inventoryTms, RecursiveTreeObject::getChildren);
         itemdetailstble.setRoot(treeItem);
         itemdetailstble.setShowRoot(false);
-        clear();
+
     }
 
     public void updateBtnSetAction(ActionEvent actionEvent) {
