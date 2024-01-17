@@ -83,6 +83,20 @@ public class DashboardFormContoller {
         });
 
     }
+    public void searchBtnSetAction(ActionEvent actionEvent) {
+            String contact = txtContactnum.getText();
+            CustomerDto customerDto = customerBoImpl.searchCustomer(contact);
+            if(customerDto!=null) {
+                txtCustomername.setText(customerDto.getName());
+                txtEmail.setText(customerDto.getEmail());
+                txtAddress.setText(customerDto.getAddress());
+            }else{
+                txtCustomername.clear();
+                txtEmail.clear();
+                txtAddress.clear();
+                new Alert(Alert.AlertType.ERROR,"This customer not registered").show();
+            }
+    }
     private void showValidationError(String message) {
         Tooltip tooltip = new Tooltip(message);
         txtCustomername.setTooltip(tooltip);
@@ -93,19 +107,26 @@ public class DashboardFormContoller {
     }
     public void placeBtnSetAction(ActionEvent actionEvent) {
         if(inventoryTms.isEmpty()){
-            new Alert(Alert.AlertType.ERROR,"Pleace add item").show();
+            new Alert(Alert.AlertType.ERROR,"pleace add item").show();
         }else {
-        String id = customerBoImpl.genertateID();
-        boolean savedCustomer=customerBoImpl.saveCustomer(
-                new CustomerDto(
-                        id,
-                        txtCustomername.getText(),
-                        txtEmail.getText(),
-                        txtAddress.getText(),
-                        txtContactnum.getText()
-                )
-        );
-        if(savedCustomer){
+            boolean savedCustomer=false;
+            CustomerDto customer = customerBoImpl.searchCustomer(txtContactnum.getText());
+            boolean isavailabel=customer!=null?true:false;
+            if(!isavailabel) {
+                id = customerBoImpl.genertateID();
+                savedCustomer = customerBoImpl.saveCustomer(
+                        new CustomerDto(
+                                id,
+                                txtCustomername.getText(),
+                                txtEmail.getText(),
+                                txtAddress.getText(),
+                                txtContactnum.getText()
+                        )
+                );
+            }else{
+                id=customer.getCustomId();
+            }
+        if(savedCustomer||isavailabel){
             OrderDto orderDto = new OrderDto(
                     orderIdlbl.getText(),
                     null,
@@ -257,7 +278,5 @@ public class DashboardFormContoller {
          return false;
     }
 
-    public void searchBtnSetAction(ActionEvent actionEvent) {
 
-    }
 }

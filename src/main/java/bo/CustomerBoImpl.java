@@ -14,11 +14,22 @@ public class CustomerBoImpl {
                 return String.format("C%04d", num);
             }
         }
-        // If dto is null or id is null, or parsing fails, return a default value
         return "C0001";
     }
 
     public boolean saveCustomer(CustomerDto customerDto){
         return customerDao.save(customerDto);
+    }
+    public CustomerDto searchCustomer(String contactno){
+        Customer customer =customerDao.search(contactno);
+        if(customer!=null){
+        return new CustomerDto(
+                customer.getCustomId(),
+                customer.getName(),
+                customer.getEmail(),
+                customer.getAddress(),
+                customer.getContactNo()
+        );}
+        return null;
     }
 }

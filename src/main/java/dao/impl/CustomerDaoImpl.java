@@ -14,9 +14,21 @@ import javax.persistence.EntityTransaction;
 import java.util.List;
 
 public class CustomerDaoImpl {
+    public Customer search(String contactNum){
+        try (Session session = HibernateUtill.getSession()) {
+            String hql = "FROM Customer c WHERE c.contactNo = :contactNum";
+            Query<Customer> query = session.createQuery(hql, Customer.class);
+            query.setParameter("contactNum", contactNum);
+            return query.uniqueResult();
+        } catch (HibernateException e) {
+            e.printStackTrace(); // Log the exception or handle it according to your needs
+        }
+        return null;
+    }
     public boolean save(CustomerDto customerDto) {
-        Session session = HibernateUtill.getSession();
-        Transaction transaction = session.beginTransaction();
+        try {
+            Session session = HibernateUtill.getSession();
+            Transaction transaction = session.beginTransaction();
         session.save(new Customer(
                 customerDto.getCustomId(),
                 customerDto.getName(),
@@ -27,7 +39,10 @@ public class CustomerDaoImpl {
         transaction.commit();
         session.clear();
         return true;
-
+        }catch (HibernateException e){
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public Customer getLastCustomer() {
