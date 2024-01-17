@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Random;
 public class OTP {
     private static final int OTP_LENGTH = 6;
-    private static final int EXPIRY_TIME_SECONDS = 60; // 5 minutes
+    private static final int EXPIRY_TIME_SECONDS = 30; // 5 minutes
     private static final int MAX_ATTEMPTS = 3;
 
     private static Map<String, OtpSession> userSessions = new HashMap<>();
