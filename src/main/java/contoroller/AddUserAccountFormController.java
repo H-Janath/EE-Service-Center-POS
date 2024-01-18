@@ -1,5 +1,5 @@
 package contoroller;
-import bo.UserAccountBoImpl;
+import bo.UsersBoImpl;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -14,7 +14,7 @@ public class AddUserAccountFormController {
     public JFXPasswordField txtenterpassword;
     public JFXComboBox cmbUsers;
     public JFXTextField txtuserName;
-    private UserAccountBoImpl userAccountBo = new UserAccountBoImpl();
+    private UsersBoImpl userAccountBo = new UsersBoImpl();
 
     public void initialize(){
         setUserType();

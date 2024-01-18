@@ -28,16 +28,8 @@ public class OrderDaoImpl {
                         orderDto.getAmount(),
                         orderDto.getDate()
                 );
-
-                // Set the customer for the order
                 order.setCustomer(customer);
-
-                // Save the order
                 session.save(order);
-
-                // Commit the transaction
-
-
                 return true; // Indicate success
             } else {
                 System.out.println("Customer with ID " + customId + " not found.");
@@ -70,9 +62,8 @@ public class OrderDaoImpl {
                     orders.get(0).getDate()
             ) : null;
         } catch (HibernateException e) {
-            // Handle exceptions appropriately (e.g., log the error)
             e.printStackTrace(); // This is for demonstration purposes; use a proper logging mechanism in a real application
-            return null; // Return null or throw a custom exception as needed
+            return null;
         }
     }
 }

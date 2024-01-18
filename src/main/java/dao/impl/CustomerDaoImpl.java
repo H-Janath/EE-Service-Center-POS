@@ -5,9 +5,11 @@ import dto.CustomerDto;
 import entity.Customer;
 import entity.Item;
 import entity.Orders;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 
 import javax.persistence.EntityTransaction;
@@ -16,10 +18,9 @@ import java.util.List;
 public class CustomerDaoImpl {
     public Customer search(String contactNum){
         try (Session session = HibernateUtill.getSession()) {
-            String hql = "FROM Customer c WHERE c.contactNo = :contactNum";
-            Query<Customer> query = session.createQuery(hql, Customer.class);
-            query.setParameter("contactNum", contactNum);
-            return query.uniqueResult();
+            Criteria criteria = session.createCriteria(Customer.class);
+            criteria.add(Restrictions.eq("contactNo", contactNum));
+            return (Customer) ((Criteria) criteria).uniqueResult();
         } catch (HibernateException e) {
             e.printStackTrace(); // Log the exception or handle it according to your needs
         }

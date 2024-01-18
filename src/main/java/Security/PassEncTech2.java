@@ -9,10 +9,8 @@ public class PassEncTech2
 {
     public static byte[] getSHA(String input) throws NoSuchAlgorithmException
     {
-        /* MessageDigest instance for hashing using SHA256 */
         MessageDigest md = MessageDigest.getInstance("SHA-256");
 
-        /* digest() method called to calculate message digest of an input and return array of byte */
         return md.digest(input.getBytes(StandardCharsets.UTF_8));
     }
 

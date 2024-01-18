@@ -19,17 +19,17 @@
                </font>
             </Label>
             <Hyperlink layoutX="331.0" layoutY="489.0" onAction="#ForgetpasswordOnAction" text="Forget password?" AnchorPane.leftAnchor="331.0" />
-            <JFXButton layoutX="331.0" layoutY="541.0" prefHeight="44.0" prefWidth="164.0" style="-fx-background-color: D9D9D9;" text="Login" AnchorPane.leftAnchor="331.0">
+            <JFXButton layoutX="331.0" layoutY="541.0" onAction="#loginBtnSetOnAction" prefHeight="44.0" prefWidth="164.0" style="-fx-background-color: D9D9D9;" text="Login" AnchorPane.leftAnchor="331.0">
                <font>
                   <Font size="24.0" />
                </font>
             </JFXButton>
-            <JFXPasswordField layoutX="331.0" layoutY="369.0" prefHeight="50.0" prefWidth="404.0" promptText="Password" AnchorPane.leftAnchor="331.0" AnchorPane.rightAnchor="500.0">
+            <JFXPasswordField fx:id="textPassword" layoutX="331.0" layoutY="369.0" prefHeight="50.0" prefWidth="404.0" promptText="Password" AnchorPane.leftAnchor="331.0" AnchorPane.rightAnchor="500.0">
                <font>
                   <Font size="24.0" />
                </font>
             </JFXPasswordField>
-            <JFXTextField layoutX="331.0" layoutY="285.0" prefHeight="49.0" prefWidth="404.0" promptText="User name" AnchorPane.leftAnchor="331.0" AnchorPane.rightAnchor="500.0">
+            <JFXTextField fx:id="txtxUserName" layoutX="331.0" layoutY="285.0" prefHeight="49.0" prefWidth="404.0" promptText="User name" AnchorPane.leftAnchor="331.0" AnchorPane.rightAnchor="500.0">
                <font>
                   <Font size="24.0" />
                </font>
