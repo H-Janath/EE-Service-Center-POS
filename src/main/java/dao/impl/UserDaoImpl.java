@@ -38,4 +38,33 @@ public class UserDaoImpl {
         }
     }
 
+    public boolean update(String email, String password) {
+        try (Session session = HibernateUtill.getSession()) {
+            Transaction transaction = session.beginTransaction();
+
+            // Assuming Users class has a constructor that accepts email as a parameter
+            Users user = session.get(Users.class, email);
+
+            if (user != null) {
+                // Update the user's information
+                user.setPassword(password);
+
+                // Save the changes to the database
+                session.update(user);
+
+                // Commit the transaction
+                transaction.commit();
+
+                return true;
+            } else {
+                // User not found
+                return false;
+            }
+        } catch (Exception e) {
+            // Handle exceptions (e.g., log or throw)
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }

@@ -1,5 +1,4 @@
 package contoroller;
-
 import Security.EmailService;
 import Security.OTP;
 import bo.UsersBoImpl;
@@ -11,8 +10,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 public class passwordResetFormController {
     public JFXTextField txtEmail;
@@ -55,6 +54,10 @@ public class passwordResetFormController {
         }
     }
 
-    public void resetBtnOnAction(ActionEvent actionEvent) {
+    public void resetBtnOnAction(ActionEvent actionEvent) throws NoSuchAlgorithmException {
+        Boolean isSaved = usersBo.updatePassword(txtEmail.getText(),txtConfirmPassword.getText());
+        if(isSaved){
+            new Alert(Alert.AlertType.INFORMATION,"Reset password successfully").show();
+        }
     }
 }

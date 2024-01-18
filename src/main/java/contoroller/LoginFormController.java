@@ -1,5 +1,4 @@
 package contoroller;
-
 import bo.UsersBoImpl;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -8,14 +7,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
-
 public class LoginFormController {
-    public AnchorPane paneid;
     public Label Logging;
     public JFXPasswordField textPassword;
     public JFXTextField txtxUserName;
