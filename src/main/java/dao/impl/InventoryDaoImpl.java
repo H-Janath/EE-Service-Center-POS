@@ -1,28 +1,33 @@
 package dao.impl;
 
 import dao.utill.HibernateUtill;
-import entity.Customer;
 import entity.Inventory;
-
 import entity.Orders;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class InventoryDaoImpl {
-    public boolean save(List<Inventory> inventoryItems,String customId) {
-        // Open a new Hibernate session
+    public boolean save(List<Inventory> inventoryItems, String customId) {
         try (Session session = HibernateUtill.getSession()) {
-            // Begin a transaction
             Transaction transaction = session.beginTransaction();
-            String hql = "FROM Orders c WHERE c.customId = :customId";
-            Query<Orders> query = session.createQuery(hql, Orders.class);
-            query.setParameter("customId", customId);
 
-            Orders order= query.uniqueResult();
+            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+            CriteriaQuery<Orders> criteriaQuery = criteriaBuilder.createQuery(Orders.class);
+            Root<Orders> orderRoot = criteriaQuery.from(Orders.class);
+
+            criteriaQuery.select(orderRoot)
+                    .where(criteriaBuilder.equal(orderRoot.get("customId"), customId));
+
+            Query<Orders> query = session.createQuery(criteriaQuery);
+            Orders order = query.uniqueResult();
+
             try {
                 // Associate the order with each inventory item
                 for (Inventory inventoryItem : inventoryItems) {
@@ -44,6 +49,7 @@ public class InventoryDaoImpl {
             }
         }
     }
+
 
     public Inventory getLastItem() {
         try (Session session = HibernateUtill.getSession()) {

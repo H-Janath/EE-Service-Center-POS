@@ -154,7 +154,12 @@ public class DashboardFormContoller {
         }
         }
     }
-    public void ORDERS_btnSetOnAction(ActionEvent actionEvent) {
+    public void ORDERS_btnSetOnAction(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage)menu_pane.getScene().getWindow();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/OrdersForm.fxml"))));
+        stage.centerOnScreen();
+        stage.setTitle("Orders Form");
+        stage.show();
     }
 
     public void CUSTOMERS_btoSetONAction(ActionEvent actionEvent) {

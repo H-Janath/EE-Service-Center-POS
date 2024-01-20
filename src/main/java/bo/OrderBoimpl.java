@@ -1,9 +1,13 @@
 package bo;
 
 import dao.impl.OrderDaoImpl;
-import entity.Item;
-import entity.Orders;
+import dto.CustIDOrderDto;
 import dto.OrderDto;
+import entity.Orders;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class OrderBoimpl {
     private OrderDaoImpl orderDao = new OrderDaoImpl();
 
@@ -20,5 +24,22 @@ public class OrderBoimpl {
         } else {
             return "OD0001";
         }
+    }
+    public List<CustIDOrderDto> allOrders(){
+        List<Orders> all = orderDao.getAll();
+        List<CustIDOrderDto> custIDOrderDtos = new ArrayList<>();
+        for(Orders orders: all){
+            custIDOrderDtos.add(
+                    new CustIDOrderDto(
+                            orders.getCustomId(),
+                            orders.getCustomer().getCustomId(),
+                            orders.getDescription(),
+                            orders.getStatus(),
+                            orders.getAmount(),
+                            orders.getDate()
+                    )
+            );
+        }
+        return custIDOrderDtos;
     }
 }

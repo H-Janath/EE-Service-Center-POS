@@ -1,4 +1,5 @@
 package dao.impl;
+
 import dao.utill.HibernateUtill;
 import dto.OrderDto;
 import entity.Customer;
@@ -8,19 +9,24 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class OrderDaoImpl {
-    public boolean save(OrderDto orderDto,String customId){
+    public boolean save(OrderDto orderDto, String customId) {
         try (Session session = HibernateUtill.getSession()) {
-            String hql = "FROM Customer c WHERE c.customId = :customId";
-            Query<Customer> query = session.createQuery(hql, Customer.class);
-            query.setParameter("customId", customId);
+            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+            CriteriaQuery<Customer> criteriaQuery = criteriaBuilder.createQuery(Customer.class);
+            Root<Customer> customerRoot = criteriaQuery.from(Customer.class);
 
-            Customer customer= query.uniqueResult();
+            criteriaQuery.select(customerRoot)
+                    .where(criteriaBuilder.equal(customerRoot.get("customId"), customId));
+
+            Customer customer = session.createQuery(criteriaQuery).uniqueResult();
 
             if (customer != null) {
-                // Create a new Order and associate it with the customer
                 Orders order = new Orders(
                         orderDto.getCustomId(),
                         orderDto.getDescription(),
@@ -39,8 +45,8 @@ public class OrderDaoImpl {
             e.printStackTrace();
             return false; // Indicate failure
         }
-
     }
+
     public Orders getLastOrder(){
         try (Session session = HibernateUtill.getSession()) {
             Transaction transaction = session.beginTransaction();
@@ -65,5 +71,11 @@ public class OrderDaoImpl {
             e.printStackTrace(); // This is for demonstration purposes; use a proper logging mechanism in a real application
             return null;
         }
+    }
+    public List<Orders> getAll(){
+        Session session = HibernateUtill.getSession();
+        Query<Orders> query = session.createQuery("FROM Orders");
+        List<Orders> ordersList = query.list();
+        return ordersList;
     }
 }

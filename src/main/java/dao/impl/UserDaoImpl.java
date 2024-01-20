@@ -9,7 +9,6 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 public class UserDaoImpl {
-
     public Users search(String email){
         try (Session session = HibernateUtill.getSession()) {
             Criteria criteria = session.createCriteria(Users.class);
