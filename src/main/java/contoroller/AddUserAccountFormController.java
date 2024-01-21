@@ -63,7 +63,13 @@ public class AddUserAccountFormController {
     }
 
     private void deleteUsers(String email) {
-
+        if(userAccountBo.deleteUser(email)){
+            new Alert(Alert.AlertType.INFORMATION,"Delete successfull").show();
+            loadUsersTable();
+            usersTable.refresh();
+        }else {
+            new Alert(Alert.AlertType.ERROR,"Delete Unsuccessfull").show();
+        }
     }
 
     private void setUserType() {
@@ -87,6 +93,7 @@ public class AddUserAccountFormController {
                         cmbUsers.getValue().toString()
                 ))){
                     new Alert(Alert.AlertType.INFORMATION,"Successfully added").show();
+                    loadUsersTable();
                     clearField();
                 }
             } catch (NoSuchAlgorithmException e) {

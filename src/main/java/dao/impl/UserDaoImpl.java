@@ -78,4 +78,15 @@ public class UserDaoImpl {
             return null;
         }
     }
+
+    public boolean delete(String userId) {
+        try(Session session = HibernateUtill.getSession()){
+            Transaction transaction = session.beginTransaction();
+            session.delete(session.find(Users.class,userId));
+            transaction.commit();
+            return true;
+        }catch (HibernateException e){
+            return false;
+        }
+    }
 }

@@ -78,4 +78,8 @@ public class UsersBoImpl {
         }
         return null;
     }
+
+    public boolean deleteUser(String userId) {
+        return userDao.delete(userId);
+    }
 }
