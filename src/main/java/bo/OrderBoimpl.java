@@ -36,10 +36,13 @@ public class OrderBoimpl {
                             orders.getDescription(),
                             orders.getStatus(),
                             orders.getAmount(),
-                            orders.getDate()
+                            orders.getDate(),
+                            orders.getInventoryList()
                     )
             );
         }
         return custIDOrderDtos;
     }
+
+
 }
