@@ -8,6 +8,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UsersBoImpl {
 
@@ -58,5 +60,22 @@ public class UsersBoImpl {
         byte[] bytes = PassEncTech2.getSHA(password);
         String G_passwords = PassEncTech2.toHexString(bytes);
         return userDao.update(email,G_passwords);
+    }
+    public List<UsersDto> allUsers(){
+        List<Users> usersList = userDao.getAll();
+        List<UsersDto> usersDtoList = new ArrayList<>();
+        if(usersList!=null){
+            for(Users users:usersList){
+                usersDtoList.add(
+                        new UsersDto(
+                                users.getEmail(),
+                                users.getPassword(),
+                                users.getRole()
+                        )
+                );
+            }
+            return usersDtoList;
+        }
+        return null;
     }
 }

@@ -77,4 +77,25 @@ public class InventoryDaoImpl {
             return null; // Return null or throw a custom exception as needed
         }
     }
+    public List<Inventory> getItem(int orderId){
+        try (Session session = HibernateUtill.getSession()) {
+            Transaction transaction = session.beginTransaction();
+
+            // Assuming orderId is a variable, you should use a parameterized query to avoid SQL injection
+            String hql = "FROM Inventory WHERE orderId = :orderId";
+
+            // Assuming you have a Query object available
+            Query<Inventory> query = session.createQuery(hql, Inventory.class);
+            query.setParameter("orderId", orderId);
+
+            // Retrieve the list of Inventory entities
+            List<Inventory> inventoryList = query.list();
+            return inventoryList;
+            // Use 'inventoryList' as needed
+        } catch (Exception e) {
+            // Handle exceptions
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

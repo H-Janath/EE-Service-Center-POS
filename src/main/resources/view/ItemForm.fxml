@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="779.0" prefWidth="1345.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="contoroller.ItemFormController">
+    <children>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <children>
+                <BorderPane layoutX="314.0" layoutY="261.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <center>
+                        <AnchorPane prefHeight="842.0" prefWidth="1426.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <AnchorPane fx:id="menu_pane" layoutX="32.0" layoutY="83.0" prefHeight="779.0" prefWidth="1113.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <AnchorPane layoutX="-1.0" layoutY="26.0" prefHeight="217.0" prefWidth="1290.0" style="-fx-background-color: #39C237;" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="26.0">
+                                            <styleClass>
+                                                <String fx:value="radius" />
+                                                <String fx:value="white-bg" />
+                                                <String fx:value="shadow" />
+                                            </styleClass>
+                                            <children>
+                                                <Label fx:id="orderIdlbl" layoutX="752.0" layoutY="158.0" prefHeight="59.0" prefWidth="139.0" AnchorPane.rightAnchor="148.0">
+                                                    <font>
+                                                        <Font size="22.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label layoutX="94.0" layoutY="14.0" text="Orders Details">
+                                                    <font>
+                                                        <Font size="19.0" />
+                                                    </font>
+                                                </Label>
+                                                <Button mnemonicParsing="false" onAction="#backBtnonAction" prefHeight="35.0" prefWidth="85.0" text="Back" />
+                                    <Label fx:id="lblOrderId" layoutX="96.0" layoutY="53.0" prefHeight="32.0" prefWidth="116.0">
+                                       <font>
+                                          <Font name="System Bold" size="22.0" />
+                                       </font>
+                                    </Label>
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane layoutY="250.0" prefHeight="515.0" prefWidth="1286.0" style="-fx-background-color: #39C237;" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="250.0">
+                                            <styleClass>
+                                                <String fx:value="radius" />
+                                                <String fx:value="white-bg" />
+                                                <String fx:value="shadow" />
+                                            </styleClass>
+                                            <children>
+                                                <JFXTreeTableView fx:id="itemsTable" layoutX="27.0" layoutY="28.0" prefHeight="400.0" prefWidth="981.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="28.0">
+                                                    <columns>
+                                                        <TreeTableColumn fx:id="colinventoryId" prefWidth="208.0" text="Inventory Id" />
+                                                        <TreeTableColumn fx:id="colCategory" prefWidth="190.0" text="Category" />
+                                                        <TreeTableColumn fx:id="colName" prefWidth="244.0" text="Name" />
+                                                        <TreeTableColumn fx:id="colFault" prefWidth="347.0" text="Fault" />
+                                                        <TreeTableColumn fx:id="colStatus" prefWidth="240.0" text="Status" />
+                                                    </columns>
+                                                </JFXTreeTableView>
+                                            </children>
+                                        </AnchorPane>
+                                    </children>
+                                </AnchorPane>
+                            </children></AnchorPane>
+                    </center>
+                </BorderPane>
+            </children>
+        </AnchorPane>
+    </children>
+</StackPane>

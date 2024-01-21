@@ -1,10 +1,8 @@
 package bo;
-import dto.OrderDto;
+
 import dao.impl.InventoryDaoImpl;
 import dto.InventoryDto;
 import entity.Inventory;
-import entity.Item;
-import entity.Orders;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,5 +34,25 @@ public class InventoryBoimpl {
         } else {
             return "IV0001";
         }
+    }
+
+    public List<InventoryDto> getOrderDetails(int orderId) {
+            List<Inventory> inventoryList = inventoryDao.getItem(orderId);
+            List<InventoryDto> dtoList = new ArrayList<>();
+            if(inventoryList!=null){
+                for(Inventory inventoryDto: inventoryList){
+                    dtoList.add(
+                            new InventoryDto(
+                                    inventoryDto.getCustomId(),
+                                    inventoryDto.getName(),
+                                    inventoryDto.getFault(),
+                                    inventoryDto.getStatus(),
+                                    inventoryDto.getCategory()
+                            )
+                    );
+                }
+                return dtoList;
+            }
+            return null;
     }
 }

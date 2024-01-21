@@ -168,7 +168,12 @@ public class DashboardFormContoller {
     public void REPORT_btnSetOnAction(ActionEvent actionEvent) {
     }
 
-    public void USERS_btnSetOnAction(ActionEvent actionEvent) {
+    public void USERS_btnSetOnAction(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage)menu_pane.getScene().getWindow();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/AddUserAccountForm.fxml"))));
+        stage.centerOnScreen();
+        stage.setTitle("Add Users");
+        stage.show();
     }
 
     public void INVENTORY_btnSetOnAction(ActionEvent actionEvent) {

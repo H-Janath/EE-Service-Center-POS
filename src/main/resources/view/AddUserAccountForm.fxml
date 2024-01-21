@@ -4,47 +4,67 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TreeTableColumn?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="776.0" prefWidth="1235.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="contoroller.AddUserAccountFormController">
-    <center>
-        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: B9DEB9;" BorderPane.alignment="CENTER">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="776.0" prefWidth="1285.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="contoroller.AddUserAccountFormController">
+   <top>
+        <AnchorPane prefHeight="224.0" prefWidth="1285.0" style="-fx-background-color: #39C237;" BorderPane.alignment="CENTER">
             <children>
-                <Label layoutX="331.0" layoutY="99.0" prefHeight="58.0" prefWidth="348.0" text="Create user account" AnchorPane.leftAnchor="331.0" AnchorPane.rightAnchor="556.0" AnchorPane.topAnchor="99.0">
+                <Label layoutX="102.0" prefHeight="58.0" prefWidth="348.0" text="Create user account" AnchorPane.leftAnchor="102.0" AnchorPane.rightAnchor="785.0" AnchorPane.topAnchor="0.0">
                     <font>
                         <Font name="Barlow Condensed SemiBold" size="45.0" />
                     </font>
                 </Label>
-                <JFXButton layoutX="331.0" layoutY="521.0" onAction="#CreateBtnSetOnAction" prefHeight="44.0" prefWidth="164.0" style="-fx-background-color: D9D9D9;" text="Create" AnchorPane.leftAnchor="331.0">
+                <JFXButton layoutX="1037.0" layoutY="72.0" onAction="#CreateBtnSetOnAction" prefHeight="44.0" prefWidth="164.0" style="-fx-background-color: D9D9D9;" text="Create" AnchorPane.leftAnchor="1037.0">
                     <font>
                         <Font size="24.0" />
                     </font>
                 </JFXButton>
-                <JFXPasswordField fx:id="txtconfirmpassword" layoutX="331.0" layoutY="416.0" prefHeight="50.0" prefWidth="404.0" promptText="Password" AnchorPane.leftAnchor="331.0" AnchorPane.rightAnchor="500.0">
+                <JFXPasswordField fx:id="txtconfirmpassword" layoutX="108.0" layoutY="143.0" prefHeight="51.0" prefWidth="411.0" promptText="Password" AnchorPane.leftAnchor="108.0">
                     <font>
                         <Font size="24.0" />
                     </font>
                 </JFXPasswordField>
-                <JFXTextField fx:id="txtuserName" layoutX="331.0" layoutY="205.0" prefHeight="49.0" prefWidth="404.0" promptText="User name" AnchorPane.leftAnchor="331.0" AnchorPane.rightAnchor="500.0">
+                <JFXTextField fx:id="txtuserName" layoutX="108.0" layoutY="72.0" prefHeight="51.0" prefWidth="411.0" promptText="User name" AnchorPane.leftAnchor="108.0">
                     <font>
                         <Font size="24.0" />
                     </font>
                 </JFXTextField>
-            <JFXPasswordField fx:id="txtenterpassword" layoutX="331.0" layoutY="348.0" prefHeight="50.0" prefWidth="404.0" promptText="Password" AnchorPane.leftAnchor="331.0" AnchorPane.rightAnchor="500.0">
+            <JFXPasswordField fx:id="txtenterpassword" layoutX="541.0" layoutY="143.0" prefHeight="51.0" prefWidth="408.0" promptText="Password" AnchorPane.leftAnchor="541.0">
                <font>
                   <Font size="24.0" />
                </font>
             </JFXPasswordField>
-            <JFXButton layoutX="515.0" layoutY="521.0" onAction="#cancelBtnOnAction" prefHeight="44.0" prefWidth="164.0" style="-fx-background-color: D9D9D9;" text="Cancel">
+            <JFXButton layoutX="1037.0" layoutY="143.0" onAction="#cancelBtnOnAction" prefHeight="44.0" prefWidth="164.0" style="-fx-background-color: D9D9D9;" text="Cancel" AnchorPane.leftAnchor="1037.0">
                <font>
                   <Font size="24.0" />
                </font>
             </JFXButton>
-            <JFXComboBox fx:id="cmbUsers" layoutX="331.0" layoutY="277.0" prefHeight="48.0" prefWidth="404.0" promptText="Enter user type" styleClass="cmbfont" stylesheets="@../styles/dashboard.css" />
+            <JFXComboBox fx:id="cmbUsers" layoutX="541.0" layoutY="72.0" prefHeight="48.0" prefWidth="404.0" promptText="Enter user type" styleClass="cmbfont" stylesheets="@../styles/dashboard.css" AnchorPane.leftAnchor="541.0" />
+            <JFXButton onAction="#backBtnOnAction" prefHeight="51.0" prefWidth="102.0" style="-fx-background-color: D9D9D9;" text="Back">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </JFXButton>
             </children>
         </AnchorPane>
-    </center>
+   </top>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #39C237;" BorderPane.alignment="CENTER">
+         <children>
+            <JFXTreeTableView fx:id="usersTable" layoutX="91.0" layoutY="22.0" prefHeight="510.0" prefWidth="1121.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="91.0" AnchorPane.rightAnchor="73.0" AnchorPane.topAnchor="22.0">
+               <columns>
+                  <TreeTableColumn fx:id="colEmail" prefWidth="401.0" text="Email" />
+                  <TreeTableColumn fx:id="colRole" prefWidth="396.0" text="Role" />
+                  <TreeTableColumn fx:id="colOption" prefWidth="323.0" text="Option" />
+               </columns>
+            </JFXTreeTableView>
+         </children>
+      </AnchorPane>
+   </center>
 </BorderPane>

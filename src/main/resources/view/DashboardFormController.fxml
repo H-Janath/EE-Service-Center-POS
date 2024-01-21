@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
@@ -28,7 +29,7 @@
                                                 <Label layoutX="39.0" layoutY="30.0" style="-fx-font-size: 19; -fx-text-fill: white;" styleClass="header-topic" text="E &amp; E Service center" />
                                             </children>
                                         </AnchorPane>
-                              <JFXButton layoutX="10.0" layoutY="319.0" onAction="#ORDERS_btnSetOnAction" prefHeight="62.0" prefWidth="227.0" styleClass="btn" stylesheets="@../styles/dashboard.css" text="ORDERS">
+                              <JFXButton layoutX="10.0" layoutY="320.0" onAction="#ORDERS_btnSetOnAction" prefHeight="62.0" prefWidth="227.0" styleClass="btn" stylesheets="@../styles/dashboard.css" text="ORDERS">
                                  <font>
                                     <Font name="Berlin Sans FB" size="29.0" />
                                  </font>
@@ -43,12 +44,12 @@
                                     <Font name="Berlin Sans FB" size="29.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton layoutX="10.0" layoutY="394.0" onAction="#USERS_btnSetOnAction" prefHeight="62.0" prefWidth="227.0" styleClass="btn" stylesheets="@../styles/dashboard.css" text="USERS">
+                              <JFXButton layoutX="10.0" layoutY="541.0" onAction="#USERS_btnSetOnAction" prefHeight="62.0" prefWidth="227.0" styleClass="btn" stylesheets="@../styles/dashboard.css" text="USERS">
                                  <font>
                                     <Font name="Berlin Sans FB" size="29.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton layoutX="10.0" layoutY="468.0" onAction="#REPORT_btnSetOnAction" prefHeight="62.0" prefWidth="227.0" styleClass="btn" stylesheets="@../styles/dashboard.css" text="REPORT">
+                              <JFXButton layoutX="10.0" layoutY="390.0" onAction="#REPORT_btnSetOnAction" prefHeight="62.0" prefWidth="227.0" styleClass="btn" stylesheets="@../styles/dashboard.css" text="REPORT">
                                  <font>
                                     <Font name="Berlin Sans FB" size="29.0" />
                                  </font>
@@ -58,7 +59,7 @@
                                     <Font size="19.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton layoutX="10.0" layoutY="546.0" onAction="#additm_btnSetOnAction" prefHeight="62.0" prefWidth="227.0" styleClass="btn" stylesheets="@../styles/dashboard.css" text="ADD ITEM">
+                              <JFXButton layoutX="10.0" layoutY="468.0" onAction="#additm_btnSetOnAction" prefHeight="62.0" prefWidth="227.0" styleClass="btn" stylesheets="@../styles/dashboard.css" text="ADD ITEM">
                                  <font>
                                     <Font name="Berlin Sans FB" size="29.0" />
                                  </font>

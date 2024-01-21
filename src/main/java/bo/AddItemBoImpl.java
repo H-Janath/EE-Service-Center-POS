@@ -6,7 +6,8 @@ import entity.Item;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddItemBoImpl {
     AdditemDaoImpl additemDao = new AdditemDaoImpl();
@@ -32,5 +33,26 @@ public class AddItemBoImpl {
         } else {
             return "I001";
         }
+    }
+
+    public List<ItemDto> allItems() {
+        List<Item> itemList = additemDao.getAll();
+        List<ItemDto> itemDtos = new ArrayList<>();
+        if(itemList!=null){
+            for(Item item: itemList){
+                itemDtos.add(
+                        new ItemDto(
+                               item.getItem_code(),
+                                item.getName(),
+                               item.getCategory()
+                        )
+                );
+            }
+        }
+        return itemDtos;
+    }
+
+    public boolean deleteItem(String itemCode) {
+        return additemDao.delete(itemCode);
     }
 }

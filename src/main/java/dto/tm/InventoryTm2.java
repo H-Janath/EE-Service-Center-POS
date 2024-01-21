@@ -1,6 +1,5 @@
 package dto.tm;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import lombok.*;
 @AllArgsConstructor
@@ -8,11 +7,11 @@ import lombok.*;
 @ToString
 @Getter
 @Setter
-public class InventoryTm extends RecursiveTreeObject<InventoryTm> {
-    private String Name;
-    private String Fault;
-    private String Category;
-    private String Status;
+public class InventoryTm2 extends RecursiveTreeObject<InventoryTm2> {
     private String id;
-    private JFXButton btn;
+    private String Name;
+    private String Category;
+    private String Fault;
+    private String Status;
+
 }

@@ -1,4 +1,5 @@
 package dao.impl;
+
 import dao.AdditemDao;
 import dao.utill.HibernateUtill;
 import dto.ItemDto;
@@ -7,6 +8,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+
 import java.util.List;
 
 public class AdditemDaoImpl implements AdditemDao {
@@ -17,12 +19,18 @@ public class AdditemDaoImpl implements AdditemDao {
         return itemList;
     }
     public boolean save(ItemDto itemDto){
-        Session session = HibernateUtill.getSession();
-        Transaction transaction = session.beginTransaction();
-        session.save(new Item(itemDto.getItem_code(),itemDto.getName(), itemDto.getCategory()));
-        transaction.commit();
-        session.clear();
-        return true;
+        try(Session session = HibernateUtill.getSession();) {
+            Transaction transaction = session.beginTransaction();
+            session.save(new Item(itemDto.getItem_code(),itemDto.getName(), itemDto.getCategory()));
+            transaction.commit();
+            session.clear();
+            return true;
+        }catch (HibernateException e) {
+            // Handle exceptions appropriately (e.g., log the error)
+            e.printStackTrace(); // This is for demonstration purposes; use a proper logging mechanism in a real application
+            return false; // Return null or throw a custom exception as needed
+        }
+
     }
     public Item getLastItem() {
         try (Session session = HibernateUtill.getSession()) {
@@ -49,4 +57,14 @@ public class AdditemDaoImpl implements AdditemDao {
         }
     }
 
+    public boolean delete(String itemCode) {
+        try(Session session = HibernateUtill.getSession();) {
+            Transaction transaction = session.beginTransaction();
+            session.delete(session.find(Item.class,itemCode));
+            transaction.commit();
+            return true;
+        }catch (HibernateException e){
+            return false;
+        }
+    }
 }

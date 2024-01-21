@@ -7,6 +7,9 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.query.Query;
+
+import java.util.List;
 
 public class UserDaoImpl {
     public Users search(String email){
@@ -66,4 +69,13 @@ public class UserDaoImpl {
         }
     }
 
+    public List<Users> getAll() {
+        try (Session session = HibernateUtill.getSession()){
+            Query<Users> query = session.createQuery("FROM Users");
+            List<Users> usersList = query.list();
+            return usersList;
+        }catch (HibernateException e){
+            return null;
+        }
+    }
 }

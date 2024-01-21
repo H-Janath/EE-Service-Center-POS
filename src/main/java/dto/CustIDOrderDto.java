@@ -1,9 +1,12 @@
 package dto;
 
+import entity.Inventory;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,5 +19,5 @@ public class CustIDOrderDto {
     private String status;
     private double amount;
     private String date;
-
+    private List<Inventory> inventoryList;
 }

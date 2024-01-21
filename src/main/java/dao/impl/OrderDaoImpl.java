@@ -73,9 +73,12 @@ public class OrderDaoImpl {
         }
     }
     public List<Orders> getAll(){
-        Session session = HibernateUtill.getSession();
-        Query<Orders> query = session.createQuery("FROM Orders");
-        List<Orders> ordersList = query.list();
-        return ordersList;
+        try(Session session = HibernateUtill.getSession()){
+            Query<Orders> query = session.createQuery("FROM Orders");
+            List<Orders> ordersList = query.list();
+            return ordersList;
+        }catch (HibernateException e){
+            return null;
+        }
     }
 }
