@@ -23,7 +23,7 @@ public class Customer {
     private String email;
     @Column(name = "address")
     private String address;
-    @Column(name = "contact_no")
+    @Column(name = "contactNo")
     private String contactNo;
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Orders> orders;
@@ -33,8 +33,15 @@ public class Customer {
     public Customer(String customId, String name, String email, String address, String contactNo) {
         this.customId = customId;
         this.name = name;
-        this.email = email;
         this.address = address;
         this.contactNo = contactNo;
+        this.email = email;
+    }
+
+    public Customer(String customId, String name, String email, String address) {
+        this.customId = customId;
+        this.name = name;
+        this.email = email;
+        this.address = address;
     }
 }

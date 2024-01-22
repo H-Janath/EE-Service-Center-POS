@@ -3,8 +3,6 @@ package dao.impl;
 import dao.utill.HibernateUtill;
 import dto.CustomerDto;
 import entity.Customer;
-import entity.Item;
-import entity.Orders;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -12,7 +10,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 
-import javax.persistence.EntityTransaction;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerDaoImpl {
@@ -71,5 +69,30 @@ public class CustomerDaoImpl {
             e.printStackTrace(); // This is for demonstration purposes; use a proper logging mechanism in a real application
             return null; // Return null or throw a custom exception as needed
         }
+    }
+    public List<Customer> getAll(){
+        List<Customer> customers = new ArrayList<>();
+        try (Session session = HibernateUtill.getSession()) {
+            // Replace 'Customer' with your actual entity class
+            Query<Customer> query = session.createQuery("FROM Customer");
+            List<Customer> customerList = query.list();
+
+            // You may need to convert the 'customerList' to a suitable format for your report
+
+            for (Customer customer : customerList) {
+                customers.add(
+                        new Customer(
+                                customer.getCustomId(),
+                                customer.getName(),
+                                customer.getEmail(),
+                                customer.getAddress()
+
+                        )
+                );
+            }
+        }catch (HibernateException e){
+            return null;
+        }
+        return customers;
     }
 }

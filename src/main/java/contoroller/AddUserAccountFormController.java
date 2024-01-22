@@ -1,5 +1,4 @@
 package contoroller;
-
 import bo.UsersBoImpl;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
@@ -15,7 +14,6 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;

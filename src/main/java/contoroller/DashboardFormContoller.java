@@ -165,7 +165,12 @@ public class DashboardFormContoller {
     public void CUSTOMERS_btoSetONAction(ActionEvent actionEvent) {
     }
 
-    public void REPORT_btnSetOnAction(ActionEvent actionEvent) {
+    public void REPORT_btnSetOnAction(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage)menu_pane.getScene().getWindow();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/ReportForm.fxml"))));
+        stage.centerOnScreen();
+        stage.setTitle("Report Form");
+        stage.show();
     }
 
     public void USERS_btnSetOnAction(ActionEvent actionEvent) throws IOException {

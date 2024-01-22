@@ -2,6 +2,10 @@ package bo;
 import dao.impl.CustomerDaoImpl;
 import dto.CustomerDto;
 import entity.Customer;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class CustomerBoImpl {
     CustomerDaoImpl customerDao = new CustomerDaoImpl();
     public String genertateID() {
@@ -30,6 +34,25 @@ public class CustomerBoImpl {
                 customer.getAddress(),
                 customer.getContactNo()
         );}
+        return null;
+    }
+    public List<CustomerDto> allCustomers() {
+        List<Customer> allcustomers = customerDao.getAll();
+        if (allcustomers != null) {
+            List<CustomerDto> dtoList = new ArrayList<>();
+            for (Customer customer : allcustomers) {
+                dtoList.add(
+                        new CustomerDto(
+                                customer.getCustomId(),
+                                customer.getName(),
+                                customer.getEmail(),
+                                customer.getContactNo(),
+                                customer.getAddress()
+                        )
+                );
+            }
+            return dtoList;
+        }
         return null;
     }
 }
