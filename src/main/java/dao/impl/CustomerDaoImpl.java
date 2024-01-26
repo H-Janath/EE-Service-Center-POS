@@ -71,28 +71,15 @@ public class CustomerDaoImpl {
         }
     }
     public List<Customer> getAll(){
-        List<Customer> customers = new ArrayList<>();
+        List<Customer> customerList = new ArrayList<>();
         try (Session session = HibernateUtill.getSession()) {
             // Replace 'Customer' with your actual entity class
             Query<Customer> query = session.createQuery("FROM Customer");
-            List<Customer> customerList = query.list();
+            customerList = query.list();
 
-            // You may need to convert the 'customerList' to a suitable format for your report
-
-            for (Customer customer : customerList) {
-                customers.add(
-                        new Customer(
-                                customer.getCustomId(),
-                                customer.getName(),
-                                customer.getEmail(),
-                                customer.getAddress()
-
-                        )
-                );
-            }
         }catch (HibernateException e){
             return null;
         }
-        return customers;
+        return customerList;
     }
 }

@@ -46,8 +46,9 @@ public class CustomerBoImpl {
                                 customer.getCustomId(),
                                 customer.getName(),
                                 customer.getEmail(),
-                                customer.getContactNo(),
-                                customer.getAddress()
+                                customer.getAddress(),
+                                customer.getContactNo()
+
                         )
                 );
             }
