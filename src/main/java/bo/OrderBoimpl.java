@@ -45,4 +45,24 @@ public class OrderBoimpl {
     }
 
 
+    public List<OrderDto> findOrders(String phone) {
+        List<Orders> ordersList = orderDao.findOrderList(phone);
+        if(ordersList!=null){
+            List<OrderDto> dtoList = new ArrayList<>();
+            for(Orders orders : ordersList){
+                dtoList.add(
+                        new OrderDto(
+                                orders.getCustomId(),
+                                orders.getDescription(),
+                                orders.getStatus(),
+                                orders.getAmount(),
+                                orders.getDate()
+                        )
+                );
+            }
+            return dtoList;
+        }else{
+            return null;
+        }
+    }
 }

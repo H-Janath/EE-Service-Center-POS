@@ -81,4 +81,16 @@ public class OrderDaoImpl {
             return null;
         }
     }
+
+    public List<Orders> findOrderList(String contactNo) {
+        try (Session session = HibernateUtill.getSession()) {
+            Query<Orders> query = session.createQuery("SELECT o FROM Orders o INNER JOIN o.customer c WHERE c.contactNo = :contactNo", Orders.class);
+            query.setParameter("contactNo", contactNo);
+            List<Orders> ordersList = query.getResultList();
+            return ordersList;
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

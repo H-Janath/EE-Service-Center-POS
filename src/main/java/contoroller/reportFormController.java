@@ -1,8 +1,15 @@
 package contoroller;
-
 import bo.CustomerBoImpl;
+import bo.InventoryBoimpl;
+import bo.OrderBoimpl;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import dto.CustomerDto;
+import dto.OrderDto;
+import dto.InventoryDto;
+import dto.tm.OrdersTm;
 import entity.Customer;
+import entity.Inventory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -21,8 +28,13 @@ import java.util.List;
 import java.util.Map;
 
 public class reportFormController {
+    public JFXTextField txtId;
+    public JFXTextField txtContact;
+    public JFXButton idBtn;
+    public JFXButton btnContact;
     CustomerBoImpl customerBo = new CustomerBoImpl();
-
+    InventoryBoimpl inventoryBoimpl = new InventoryBoimpl();
+    OrderBoimpl orderBoimpl = new OrderBoimpl();
     public Label lblTopic;
 
     public void backBtnSetOnAction(ActionEvent actionEvent) throws IOException {
@@ -33,14 +45,10 @@ public class reportFormController {
         stage.show();
     }
 
-    public void OrderReportBtnOnAction(ActionEvent actionEvent) {
-    }
-
-
 
     public void CustomerReportBtnAction(ActionEvent actionEvent) {
         try {
-            JasperDesign design = JRXmlLoader.load("src/main/resources/report/CustomersReports.jrxml");
+            JasperDesign design = JRXmlLoader.load("src/main/resources/report/CustomersReport.jrxml");
             JasperReport jasperReport = JasperCompileManager.compileReport(design);
 
             // Use Hibernate session to get a connection
@@ -51,13 +59,15 @@ public class reportFormController {
                         new Customer(
                                 customer.getCustomId(),
                                 customer.getName(),
+                                customer.getAddress(),
                                 customer.getEmail(),
-                                customer.getAddress()
+                                customer.getContactNo()
+
                         )
                 );
             }
             // Use the customerList as the data source for the report
-                JRDataSource dataSource = new JRBeanCollectionDataSource(customers);
+                JRDataSource dataSource = new JRBeanCollectionDataSource(customerDtos);
 
                 // Create an empty Map as there are no specific parameters for the report
                 Map<String, Object> parameters = new HashMap<>();
@@ -73,7 +83,74 @@ public class reportFormController {
 
     }
 
+    public void OrderReportbyidBtnOnAction(ActionEvent actionEvent) {
+        try {
+            JasperDesign design = JRXmlLoader.load("src/main/resources/report/OrderDetailsReport.jrxml");
+            JasperReport jasperReport = JasperCompileManager.compileReport(design);
+            int numericValue  = Integer.parseInt(txtId.getText().replaceAll("\\D*(\\d+).*", "$1"));
+            // Use Hibernate session to get a connection
+            List<InventoryDto> inventoryDtos = inventoryBoimpl.getOrderDetails(numericValue);
+            List<Inventory> inventories = new ArrayList<>();
+            for(InventoryDto inventory: inventoryDtos){
+                inventories.add(
+                        new Inventory(
+                                inventory.getCustomId(),
+                                inventory.getName(),
+                                inventory.getFault(),
+                                inventory.getStatus(),
+                                inventory.getCategory()
+                        )
+                );
+            }
+            // Use the customerList as the data source for the report
+            JRDataSource dataSource = new JRBeanCollectionDataSource(inventories);
 
-    public void SalesReportBtnOnAction(ActionEvent actionEvent) {
+            // Create an empty Map as there are no specific parameters for the report
+            Map<String, Object> parameters = new HashMap<>();
+
+            // Fill the report using the JasperFillManager with parameters
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+
+            // Now you can use the filled JasperPrint object for further operations, such as exporting or viewing the report
+            JasperViewer.viewReport(jasperPrint, false);
+        } catch (JRException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void OrderReportBycontactBtnOnAction(ActionEvent actionEvent) {
+       try {
+            JasperDesign design = JRXmlLoader.load("src/main/resources/report/OrdersReport.jrxml");
+            JasperReport jasperReport = JasperCompileManager.compileReport(design);
+            String  phone  = txtContact.getText();
+            // Use Hibernate session to get a connection
+            List<OrderDto> orderDtos = orderBoimpl.findOrders(phone);
+            List<OrdersTm> orderslist = new ArrayList<>();
+            for(OrderDto orderDto: orderDtos){
+                System.out.println(orderDto.getCustomId());
+                orderslist.add(
+                        new OrdersTm(
+                                orderDto.getCustomId(),
+                                orderDto.getDate(),
+                                orderDto.getStatus(),
+                                orderDto.getAmount()
+                        )
+                );
+            }
+            // Use the customerList as the data source for the report
+            JRDataSource dataSource = new JRBeanCollectionDataSource(orderDtos);
+
+            // Create an empty Map as there are no specific parameters for the report
+            Map<String, Object> parameters = new HashMap<>();
+
+            // Fill the report using the JasperFillManager with parameters
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+
+            // Now you can use the filled JasperPrint object for further operations, such as exporting or viewing the report
+            JasperViewer.viewReport(jasperPrint, false);
+        } catch (JRException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
