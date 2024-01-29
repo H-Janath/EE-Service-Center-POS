@@ -15,7 +15,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class OrderDaoImpl implements OrderDao {
-    public boolean save(Orders order, String customId) {
+    public boolean saveOrder(Orders order, String customId) {
         try (Session session = HibernateUtill.getSession()) {
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
             CriteriaQuery<Customer> criteriaQuery = criteriaBuilder.createQuery(Customer.class);
@@ -65,6 +65,7 @@ public class OrderDaoImpl implements OrderDao {
             return null;
         }
     }
+
 
     @Override
     public boolean save(Orders entity) {

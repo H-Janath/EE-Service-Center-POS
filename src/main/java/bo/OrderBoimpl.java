@@ -12,7 +12,7 @@ public class OrderBoimpl {
     private OrderDaoImpl orderDao = new OrderDaoImpl();
 
     public boolean saveOrder(OrderDto orderDto,String customId){
-        return orderDao.save(
+        return orderDao.saveOrder(
                 new Orders(
                         orderDto.getCustomId(),
                         orderDto.getDescription(),

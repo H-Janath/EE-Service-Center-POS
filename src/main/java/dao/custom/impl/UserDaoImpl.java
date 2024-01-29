@@ -46,7 +46,7 @@ public class UserDaoImpl implements UserDao {
         return false;
     }
 
-    public boolean update(String email, String password) {
+    public boolean updatePassword(String email, String password) {
         try (Session session = HibernateUtill.getSession()) {
             Transaction transaction = session.beginTransaction();
 

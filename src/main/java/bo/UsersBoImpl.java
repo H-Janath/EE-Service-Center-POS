@@ -59,7 +59,7 @@ public class UsersBoImpl {
     public boolean updatePassword(String email,String password) throws NoSuchAlgorithmException {
         byte[] bytes = PassEncTech2.getSHA(password);
         String G_passwords = PassEncTech2.toHexString(bytes);
-        return userDao.update(email,G_passwords);
+        return userDao.updatePassword(email,G_passwords);
     }
     public List<UsersDto> allUsers(){
         List<Users> usersList = userDao.getAll();
