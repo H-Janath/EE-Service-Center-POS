@@ -1,6 +1,6 @@
 package bo;
 
-import dao.impl.OrderDaoImpl;
+import dao.custom.impl.OrderDaoImpl;
 import dto.CustIDOrderDto;
 import dto.OrderDto;
 import entity.Orders;
@@ -12,7 +12,14 @@ public class OrderBoimpl {
     private OrderDaoImpl orderDao = new OrderDaoImpl();
 
     public boolean saveOrder(OrderDto orderDto,String customId){
-        return orderDao.save(orderDto,customId);
+        return orderDao.save(
+                new Orders(
+                        orderDto.getCustomId(),
+                        orderDto.getDescription(),
+                        orderDto.getStatus(),
+                        orderDto.getAmount(),
+                        orderDto.getDate()
+                ),customId);
     }
     public String genertateID() {
         Orders dto = orderDao.getLastOrder();

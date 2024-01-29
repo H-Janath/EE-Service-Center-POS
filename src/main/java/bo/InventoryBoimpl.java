@@ -1,6 +1,6 @@
 package bo;
 
-import dao.impl.InventoryDaoImpl;
+import dao.custom.impl.InventoryDaoImpl;
 import dto.InventoryDto;
 import entity.Inventory;
 
@@ -22,7 +22,7 @@ public class InventoryBoimpl {
                     )
             );
         }
-        return inventoryDao.save(inventorielist,customid);
+        return inventoryDao.saveList(inventorielist,customid);
     }
     public String genertateID() {
         Inventory dto = inventoryDao.getLastItem();

@@ -1,7 +1,7 @@
-package dao.impl;
+package dao.custom.impl;
 
+import dao.custom.CustomerDao;
 import dao.utill.HibernateUtill;
-import dto.CustomerDto;
 import entity.Customer;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
@@ -13,7 +13,7 @@ import org.hibernate.query.Query;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerDaoImpl {
+public class CustomerDaoImpl implements CustomerDao {
     public Customer search(String contactNum){
         try (Session session = HibernateUtill.getSession()) {
             Criteria criteria = session.createCriteria(Customer.class);
@@ -24,7 +24,7 @@ public class CustomerDaoImpl {
         }
         return null;
     }
-    public boolean save(CustomerDto customerDto) {
+    public boolean save(Customer customerDto) {
         try {
             Session session = HibernateUtill.getSession();
             Transaction transaction = session.beginTransaction();
@@ -41,6 +41,16 @@ public class CustomerDaoImpl {
         }catch (HibernateException e){
             e.printStackTrace();
         }
+        return false;
+    }
+
+    @Override
+    public boolean update(Customer entity) {
+        return false;
+    }
+
+    @Override
+    public boolean delete(String entity) {
         return false;
     }
 

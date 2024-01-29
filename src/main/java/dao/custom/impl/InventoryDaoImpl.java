@@ -1,5 +1,6 @@
-package dao.impl;
+package dao.custom.impl;
 
+import dao.custom.InventoryDao;
 import dao.utill.HibernateUtill;
 import entity.Inventory;
 import entity.Orders;
@@ -13,8 +14,8 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
-public class InventoryDaoImpl {
-    public boolean save(List<Inventory> inventoryItems, String customId) {
+public class InventoryDaoImpl implements InventoryDao {
+    public boolean saveList(List<Inventory> inventoryItems, String customId) {
         try (Session session = HibernateUtill.getSession()) {
             Transaction transaction = session.beginTransaction();
 
@@ -96,6 +97,27 @@ public class InventoryDaoImpl {
             // Handle exceptions
             e.printStackTrace();
         }
+        return null;
+    }
+
+
+    @Override
+    public boolean save(Inventory entity) {
+        return false;
+    }
+
+    @Override
+    public boolean update(Inventory entity) {
+        return false;
+    }
+
+    @Override
+    public boolean delete(String entity) {
+        return false;
+    }
+
+    @Override
+    public List<Inventory> getAll() {
         return null;
     }
 }

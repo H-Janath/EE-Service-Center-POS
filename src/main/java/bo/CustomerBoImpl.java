@@ -1,5 +1,5 @@
 package bo;
-import dao.impl.CustomerDaoImpl;
+import dao.custom.impl.CustomerDaoImpl;
 import dto.CustomerDto;
 import entity.Customer;
 
@@ -22,7 +22,15 @@ public class CustomerBoImpl {
     }
 
     public boolean saveCustomer(CustomerDto customerDto){
-        return customerDao.save(customerDto);
+        return customerDao.save(
+                new Customer(
+                        customerDto.getCustomId(),
+                        customerDto.getName(),
+                        customerDto.getAddress(),
+                        customerDto.getContactNo(),
+                        customerDto.getEmail()
+                )
+        );
     }
     public CustomerDto searchCustomer(String contactno){
         Customer customer =customerDao.search(contactno);

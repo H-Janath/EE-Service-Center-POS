@@ -1,8 +1,7 @@
-package dao.impl;
+package dao.custom.impl;
 
-import dao.AdditemDao;
+import dao.custom.AdditemDao;
 import dao.utill.HibernateUtill;
-import dto.ItemDto;
 import entity.Item;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -18,20 +17,25 @@ public class AdditemDaoImpl implements AdditemDao {
         List<Item> itemList = query.list();
         return itemList;
     }
-    public boolean save(ItemDto itemDto){
+    public boolean save(Item item){
         try(Session session = HibernateUtill.getSession();) {
             Transaction transaction = session.beginTransaction();
-            session.save(new Item(itemDto.getItem_code(),itemDto.getName(), itemDto.getCategory()));
+            session.save(item);
             transaction.commit();
             session.clear();
             return true;
         }catch (HibernateException e) {
-            // Handle exceptions appropriately (e.g., log the error)
             e.printStackTrace(); // This is for demonstration purposes; use a proper logging mechanism in a real application
             return false; // Return null or throw a custom exception as needed
         }
 
     }
+
+    @Override
+    public boolean update(Item entity) {
+        return false;
+    }
+
     public Item getLastItem() {
         try (Session session = HibernateUtill.getSession()) {
             Transaction transaction = session.beginTransaction();

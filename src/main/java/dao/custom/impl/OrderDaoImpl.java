@@ -1,7 +1,7 @@
-package dao.impl;
+package dao.custom.impl;
 
+import dao.custom.OrderDao;
 import dao.utill.HibernateUtill;
-import dto.OrderDto;
 import entity.Customer;
 import entity.Orders;
 import org.hibernate.HibernateException;
@@ -14,8 +14,8 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
-public class OrderDaoImpl {
-    public boolean save(OrderDto orderDto, String customId) {
+public class OrderDaoImpl implements OrderDao {
+    public boolean save(Orders order, String customId) {
         try (Session session = HibernateUtill.getSession()) {
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
             CriteriaQuery<Customer> criteriaQuery = criteriaBuilder.createQuery(Customer.class);
@@ -27,13 +27,6 @@ public class OrderDaoImpl {
             Customer customer = session.createQuery(criteriaQuery).uniqueResult();
 
             if (customer != null) {
-                Orders order = new Orders(
-                        orderDto.getCustomId(),
-                        orderDto.getDescription(),
-                        orderDto.getStatus(),
-                        orderDto.getAmount(),
-                        orderDto.getDate()
-                );
                 order.setCustomer(customer);
                 session.save(order);
                 return true; // Indicate success
@@ -72,6 +65,22 @@ public class OrderDaoImpl {
             return null;
         }
     }
+
+    @Override
+    public boolean save(Orders entity) {
+        return false;
+    }
+
+    @Override
+    public boolean update(Orders entity) {
+        return false;
+    }
+
+    @Override
+    public boolean delete(String entity) {
+        return false;
+    }
+
     public List<Orders> getAll(){
         try(Session session = HibernateUtill.getSession()){
             Query<Orders> query = session.createQuery("FROM Orders");

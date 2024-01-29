@@ -1,5 +1,6 @@
-package dao.impl;
+package dao.custom.impl;
 
+import dao.custom.UserDao;
 import dao.utill.HibernateUtill;
 import entity.Users;
 import org.hibernate.Criteria;
@@ -11,7 +12,7 @@ import org.hibernate.query.Query;
 
 import java.util.List;
 
-public class UserDaoImpl {
+public class UserDaoImpl implements UserDao {
     public Users search(String email){
         try (Session session = HibernateUtill.getSession()) {
             Criteria criteria = session.createCriteria(Users.class);
@@ -38,6 +39,11 @@ public class UserDaoImpl {
                 return false;
             }
         }
+    }
+
+    @Override
+    public boolean update(Users entity) {
+        return false;
     }
 
     public boolean update(String email, String password) {

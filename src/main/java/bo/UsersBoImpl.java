@@ -1,7 +1,7 @@
 package bo;
 
 import Security.PassEncTech2;
-import dao.impl.UserDaoImpl;
+import dao.custom.impl.UserDaoImpl;
 import dto.UsersDto;
 import entity.Users;
 import javafx.collections.FXCollections;

@@ -1,6 +1,6 @@
 package bo;
 
-import dao.impl.AdditemDaoImpl;
+import dao.custom.impl.AdditemDaoImpl;
 import dto.ItemDto;
 import entity.Item;
 import javafx.collections.FXCollections;
@@ -13,7 +13,13 @@ public class AddItemBoImpl {
     AdditemDaoImpl additemDao = new AdditemDaoImpl();
 
     public boolean saveItem(ItemDto itemDto){
-        return additemDao.save(itemDto);
+        return additemDao.save(
+                new Item(
+                        itemDto.getItem_code(),
+                        itemDto.getName(),
+                        itemDto.getCategory()
+                )
+        );
     }
 
     public ObservableList<String> getCategory() {
