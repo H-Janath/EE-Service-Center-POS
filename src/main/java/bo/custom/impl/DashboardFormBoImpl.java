@@ -1,13 +1,16 @@
-package bo;
+package bo.custom.impl;
+
+import bo.custom.DashboardFormBo;
 import dao.custom.AdditemDao;
 import dao.custom.impl.AdditemDaoImpl;
 import dto.ItemDto;
 import entity.Item;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class DashboardFormBoImpl {
+public class DashboardFormBoImpl implements DashboardFormBo<ItemDto> {
     AdditemDao additemDao = new AdditemDaoImpl();
 
 

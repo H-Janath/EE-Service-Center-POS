@@ -1,5 +1,5 @@
 package contoroller;
-import bo.*;
+import bo.custom.impl.*;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import dto.CustomerDto;
@@ -60,7 +60,7 @@ public class DashboardFormContoller {
         colStatus.setCellValueFactory(new TreeItemPropertyValueFactory<>("Status"));
         colOption.setCellValueFactory(new TreeItemPropertyValueFactory<>("btn"));
         colitemcode.setCellValueFactory(new TreeItemPropertyValueFactory<>("id"));
-        orderIdlbl.setText(orderBoimpl.genertateID());
+        orderIdlbl.setText(orderBoimpl.genertatOrderID());
         setCategory();
         loadTronic();
         loadTricale();
@@ -113,7 +113,7 @@ public class DashboardFormContoller {
             CustomerDto customer = customerBoImpl.searchCustomer(txtContactnum.getText());
             boolean isavailabel=customer!=null?true:false;
             if(!isavailabel) {
-                id = customerBoImpl.genertateID();
+                id = customerBoImpl.genertateCustomerID();
                 savedCustomer = customerBoImpl.saveCustomer(
                         new CustomerDto(
                                 id,
@@ -149,7 +149,7 @@ public class DashboardFormContoller {
                     );
                 }
                 inventoryBoimpl.saveInventoryItems(dtoList,orderDto.getCustomId());
-                orderIdlbl.setText(orderBoimpl.genertateID());
+                orderIdlbl.setText(orderBoimpl.genertatOrderID());
             }
         }
         }
@@ -193,7 +193,7 @@ public class DashboardFormContoller {
             new Alert(Alert.AlertType.ERROR, "Please select item").show();
         }else {
             if (inventoryTms.isEmpty()) {
-                id = inventoryBoimpl.genertateID();
+                id = inventoryBoimpl.genertateInventoryID();
             } else {
                 int lastIndex = inventoryTms.size() - 1;
                 InventoryTm lastObject = inventoryTms.get(lastIndex);

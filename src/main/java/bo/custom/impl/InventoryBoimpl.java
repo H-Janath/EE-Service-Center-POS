@@ -1,5 +1,6 @@
-package bo;
+package bo.custom.impl;
 
+import bo.custom.InventoryBo;
 import dao.custom.impl.InventoryDaoImpl;
 import dto.InventoryDto;
 import entity.Inventory;
@@ -7,7 +8,7 @@ import entity.Inventory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InventoryBoimpl {
+public class InventoryBoimpl implements InventoryBo<InventoryDto> {
     InventoryDaoImpl inventoryDao = new InventoryDaoImpl();
     public boolean saveInventoryItems(List<InventoryDto> inventories, String customid){
         List<Inventory> inventorielist = new ArrayList<>();
@@ -24,7 +25,7 @@ public class InventoryBoimpl {
         }
         return inventoryDao.saveList(inventorielist,customid);
     }
-    public String genertateID() {
+    public String genertateInventoryID() {
         Inventory dto = inventoryDao.getLastItem();
         if (dto != null) {
             String id = dto.getCustomId();

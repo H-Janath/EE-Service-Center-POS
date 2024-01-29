@@ -1,5 +1,6 @@
-package bo;
+package bo.custom.impl;
 
+import bo.custom.OrderBo;
 import dao.custom.impl.OrderDaoImpl;
 import dto.CustIDOrderDto;
 import dto.OrderDto;
@@ -8,7 +9,7 @@ import entity.Orders;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderBoimpl {
+public class OrderBoimpl implements OrderBo {
     private OrderDaoImpl orderDao = new OrderDaoImpl();
 
     public boolean saveOrder(OrderDto orderDto,String customId){
@@ -21,7 +22,7 @@ public class OrderBoimpl {
                         orderDto.getDate()
                 ),customId);
     }
-    public String genertateID() {
+    public String genertatOrderID() {
         Orders dto = orderDao.getLastOrder();
         if (dto != null) {
             String id = dto.getCustomId();

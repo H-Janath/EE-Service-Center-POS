@@ -1,6 +1,6 @@
 package contoroller;
 
-import bo.AddItemBoImpl;
+import bo.custom.impl.AddItemBoImpl;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import dto.ItemDto;
@@ -38,7 +38,7 @@ public class AddItemFormController {
         colOption.setCellValueFactory(new TreeItemPropertyValueFactory<>("btn"));
         loadItemTable();
 
-        LBLitemcode.setText(addItemBo.genertateID());
+        LBLitemcode.setText(addItemBo.genertateItemID());
         setCategory();
     }
 
@@ -92,7 +92,7 @@ public class AddItemFormController {
     private void clearField(){
         txtName.clear();
         cmbCategory.getSelectionModel().clearSelection();
-        LBLitemcode.setText(addItemBo.genertateID());
+        LBLitemcode.setText(addItemBo.genertateItemID());
 
     }
 

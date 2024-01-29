@@ -1,7 +1,7 @@
 package contoroller;
 import Security.EmailService;
 import Security.OTP;
-import bo.UsersBoImpl;
+import bo.custom.impl.UsersBoImpl;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import dto.UsersDto;

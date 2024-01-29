@@ -1,7 +1,7 @@
 package contoroller;
-import bo.CustomerBoImpl;
-import bo.InventoryBoimpl;
-import bo.OrderBoimpl;
+import bo.custom.impl.CustomerBoImpl;
+import bo.custom.impl.InventoryBoimpl;
+import bo.custom.impl.OrderBoimpl;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import dto.CustomerDto;

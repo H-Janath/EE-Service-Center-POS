@@ -1,5 +1,6 @@
-package bo;
+package bo.custom.impl;
 
+import bo.custom.AdditemBo;
 import dao.custom.impl.AdditemDaoImpl;
 import dto.ItemDto;
 import entity.Item;
@@ -9,7 +10,7 @@ import javafx.collections.ObservableList;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddItemBoImpl {
+public class AddItemBoImpl implements AdditemBo<ItemDto> {
     AdditemDaoImpl additemDao = new AdditemDaoImpl();
 
     public boolean saveItem(ItemDto itemDto){
@@ -29,7 +30,7 @@ public class AddItemBoImpl {
         return list;
     }
 
-    public String genertateID() {
+    public String genertateItemID() {
         Item dto = additemDao.getLastItem();
         if (dto != null) {
             String id = dto.getItem_code();

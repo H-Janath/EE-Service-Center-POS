@@ -1,4 +1,7 @@
-package bo;
+package bo.custom.impl;
+
+import bo.custom.CustomerBo;
+import dao.custom.CustomerDao;
 import dao.custom.impl.CustomerDaoImpl;
 import dto.CustomerDto;
 import entity.Customer;
@@ -6,9 +9,9 @@ import entity.Customer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerBoImpl {
-    CustomerDaoImpl customerDao = new CustomerDaoImpl();
-    public String genertateID() {
+public class CustomerBoImpl implements CustomerBo<CustomerDto> {
+    private CustomerDao customerDao = new CustomerDaoImpl();
+    public String genertateCustomerID() {
         Customer dto = customerDao.getLastCustomer();
         if (dto != null) {
             String id = dto.getCustomId();

@@ -1,5 +1,5 @@
 package contoroller;
-import bo.UsersBoImpl;
+import bo.custom.impl.UsersBoImpl;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import dto.UsersDto;

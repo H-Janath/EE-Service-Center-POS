@@ -1,6 +1,7 @@
-package bo;
+package bo.custom.impl;
 
 import Security.PassEncTech2;
+import bo.custom.UserBo;
 import dao.custom.impl.UserDaoImpl;
 import dto.UsersDto;
 import entity.Users;
@@ -11,7 +12,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsersBoImpl {
+public class UsersBoImpl implements UserBo<UsersDto> {
 
     private UserDaoImpl userDao = new UserDaoImpl();
     public UsersDto searchUser(String email){

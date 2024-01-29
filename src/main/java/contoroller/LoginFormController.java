@@ -1,5 +1,5 @@
 package contoroller;
-import bo.UsersBoImpl;
+import bo.custom.impl.UsersBoImpl;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
