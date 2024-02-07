@@ -1,4 +1,5 @@
 package entity;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -7,6 +8,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "Inventory")
 public class Inventory {
@@ -38,6 +40,14 @@ public class Inventory {
     // Getters and setters
 
 
+    public Inventory(Long inventoryId,String customId, String name, String fault, String status, String category) {
+        this.inventoryId = inventoryId;
+        this.customId = customId;
+        this.name = name;
+        this.fault = fault;
+        this.status = status;
+        this.category = category;
+    }
     public Inventory(String customId, String name, String fault, String status, String category) {
         this.customId = customId;
         this.name = name;

@@ -66,6 +66,7 @@ public class InventoryDaoImpl implements InventoryDao {
 
             // Check if the list is not empty before returning the item
             return !inventories.isEmpty() ? new Inventory(
+                    inventories.get(0).getInventoryId(),
                     inventories.get(0).getCustomId(),
                     inventories.get(0).getName(),
                     inventories.get(0).getFault(),

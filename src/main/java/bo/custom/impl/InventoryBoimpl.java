@@ -6,7 +6,6 @@ import dto.InventoryDto;
 import entity.Inventory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +34,7 @@ public class InventoryBoimpl implements InventoryBo<InventoryDto> {
         Inventory dto = inventoryDao.getLastItem();
         if (dto != null) {
             Long num = dto.getInventoryId();
+            System.out.println(num);
             num++;
             return String.format("IV%04d", num);
         } else {
