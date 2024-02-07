@@ -8,6 +8,7 @@ import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import dto.CustIDOrderDto;
 import dto.InventoryDto;
+import dto.PartsDto;
 import dto.tm.InventoryTm2;
 import dto.tm.OrdersTm;
 import javafx.beans.value.ChangeListener;
@@ -45,6 +46,8 @@ public class OrderFormContoller {
     public JFXTreeTableView<InventoryTm2> inventoryTable;
     public Label lbl_inventoryid;
     public JFXComboBox status;
+    public JFXTextField txtpart;
+    public JFXTextField txtprice;
     OrderBo orderBoimpl = new OrderBoimpl();
     InventoryBo inventoryBoimpl = new InventoryBoimpl();
 
@@ -187,6 +190,12 @@ public class OrderFormContoller {
     }
 
     public void customerIDsearchBtnSetAction(ActionEvent actionEvent) {
+    }
+
+    public void addbtnAction(ActionEvent actionEvent) {
+            inventoryBoimpl.addParts(
+                    new PartsDto(txtpart.getText(),
+                            Double.parseDouble(txtprice.getText())),lbl_inventoryid.getText());
     }
 
 }

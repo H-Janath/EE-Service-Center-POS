@@ -91,10 +91,24 @@
                                     <String fx:value="shadow" />
                                  </styleClass>
                                  <children>
-                                    <JFXComboBox fx:id="status" layoutX="251.0" layoutY="52.0" prefHeight="31.0" prefWidth="207.0" />
-                                    <JFXTextField layoutX="489.0" layoutY="52.0" prefHeight="31.0" prefWidth="266.0" promptText="Add additional part" />
-                                    <Label fx:id="lbl_inventoryid" layoutX="35.0" layoutY="51.0" prefHeight="33.0" prefWidth="199.0" />
-                                    <JFXButton layoutX="779.0" layoutY="50.0" prefHeight="33.0" prefWidth="79.0" text="Add" />
+                                    <JFXComboBox fx:id="status" layoutX="197.0" layoutY="55.0" prefHeight="31.0" prefWidth="207.0" />
+                                    <Label fx:id="lbl_inventoryid" layoutX="35.0" layoutY="51.0" prefHeight="33.0" prefWidth="136.0">
+                                       <font>
+                                          <Font name="System Bold" size="21.0" />
+                                       </font></Label>
+                                    <JFXButton layoutX="1009.0" layoutY="45.0" onAction="#addbtnAction" prefHeight="33.0" prefWidth="79.0" text="Add">
+                                       <font>
+                                          <Font size="21.0" />
+                                       </font></JFXButton>
+                                    <JFXTextField fx:id="txtpart" layoutX="442.0" layoutY="52.0" prefHeight="37.0" prefWidth="238.0" promptText="Add additional part">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font></JFXTextField>
+                                    <JFXTextField fx:id="txtprice" layoutX="708.0" layoutY="52.0" prefHeight="37.0" prefWidth="239.0" promptText="price">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </JFXTextField>
                                  </children>
                               </AnchorPane>
                                     </children>

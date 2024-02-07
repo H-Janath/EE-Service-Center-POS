@@ -11,7 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "Orders")
 public class Orders {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "OrderId")

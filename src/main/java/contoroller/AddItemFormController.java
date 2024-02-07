@@ -93,13 +93,11 @@ public class AddItemFormController {
         txtName.clear();
         cmbCategory.getSelectionModel().clearSelection();
         LBLitemcode.setText(addItemBo.genertateItemID());
-
     }
 
     public void CancelBtnSetOnAction(ActionEvent actionEvent) {
         clearField();
     }
-
     public void backBtnSetOnAction(ActionEvent actionEvent) throws IOException {
         Stage stage= (Stage) txtName.getScene().getWindow();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/DashboardFormController.fxml"))));

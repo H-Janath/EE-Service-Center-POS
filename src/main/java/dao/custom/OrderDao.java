@@ -2,7 +2,6 @@ package dao.custom;
 
 import dao.CrudDao;
 import entity.Orders;
-
 import java.util.List;
 
 public interface OrderDao extends CrudDao<Orders> {

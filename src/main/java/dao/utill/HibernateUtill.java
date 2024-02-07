@@ -21,6 +21,7 @@ public class HibernateUtill {
                 .addAnnotatedClass(Inventory.class)
                 .addAnnotatedClass(Orders.class)
                 .addAnnotatedClass(Users.class)
+                .addAnnotatedClass(Parts.class)
                 .getMetadataBuilder()
                 .applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE)
                 .build();

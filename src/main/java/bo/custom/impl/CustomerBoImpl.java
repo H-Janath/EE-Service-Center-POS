@@ -1,11 +1,9 @@
 package bo.custom.impl;
-
 import bo.custom.CustomerBo;
 import dao.custom.CustomerDao;
 import dao.custom.impl.CustomerDaoImpl;
 import dto.CustomerDto;
 import entity.Customer;
-
 import java.util.ArrayList;
 import java.util.List;
 

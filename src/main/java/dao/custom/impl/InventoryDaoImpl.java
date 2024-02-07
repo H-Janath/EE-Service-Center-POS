@@ -4,6 +4,7 @@ import dao.custom.InventoryDao;
 import dao.utill.HibernateUtill;
 import entity.Inventory;
 import entity.Orders;
+import entity.Parts;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -48,6 +49,9 @@ public class InventoryDaoImpl implements InventoryDao {
                 // Return false indicating failure
                 return false;
             }
+        }catch (HibernateException e){
+            e.printStackTrace();
+            return false;
         }
     }
 
@@ -82,7 +86,6 @@ public class InventoryDaoImpl implements InventoryDao {
     public List<Inventory> getItem(int orderId){
         try (Session session = HibernateUtill.getSession()) {
             Transaction transaction = session.beginTransaction();
-
             // Assuming orderId is a variable, you should use a parameterized query to avoid SQL injection
             String hql = "FROM Inventory WHERE orderId = :orderId";
 
@@ -135,6 +138,31 @@ public class InventoryDaoImpl implements InventoryDao {
                 return false;
             }
         }catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean add(Parts parts, Long inventoryId) {
+        try(Session session = HibernateUtill.getSession()){
+            Transaction transaction = session.beginTransaction();
+            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+            CriteriaQuery<Inventory> criteriaQuery = criteriaBuilder.createQuery(Inventory.class);
+            Root<Inventory> inventoryRoot =  criteriaQuery.from(Inventory.class);
+            criteriaQuery.select(inventoryRoot).where(criteriaBuilder.equal(inventoryRoot.get("inventoryId"),inventoryId));
+            Query<Inventory> query = session.createQuery(criteriaQuery);
+            try {
+                Inventory inventory = query.uniqueResult();
+                parts.setInventory(inventory);
+                session.save(parts);
+                transaction.commit();
+                return true;
+            }catch (Exception e){
+                e.printStackTrace();
+                transaction.rollback();
+                return false;
+            }
+        }catch (HibernateException e){
             e.printStackTrace();
             return false;
         }

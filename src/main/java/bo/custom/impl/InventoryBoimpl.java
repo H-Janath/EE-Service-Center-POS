@@ -3,9 +3,12 @@ package bo.custom.impl;
 import bo.custom.InventoryBo;
 import dao.custom.impl.InventoryDaoImpl;
 import dto.InventoryDto;
+import dto.PartsDto;
 import entity.Inventory;
+import entity.Parts;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +33,14 @@ public class InventoryBoimpl implements InventoryBo<InventoryDto> {
         Long uniquid = Long.parseLong(id.split("IV")[1]);
         return inventoryDao.updateStatus(uniquid,status);
     }
+
+    @Override
+    public boolean addParts(PartsDto parts,String inventoryid) {
+        return inventoryDao.add(
+                new Parts(parts.getName(),parts.getCost())
+                ,Long.parseLong(inventoryid.split("IV")[1]));
+    }
+
     public String genertateInventoryID() {
         Inventory dto = inventoryDao.getLastItem();
         if (dto != null) {
