@@ -1,7 +1,9 @@
 package contoroller;
 import Security.EmailService;
 import Security.OTP;
+import bo.BoFactory;
 import bo.custom.impl.UsersBoImpl;
+import bo.util.BoType;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import dto.UsersDto;
@@ -19,7 +21,7 @@ public class passwordResetFormController {
     public JFXPasswordField txtxNewPassword;
     public JFXTextField txtOtp;
 
-    UsersBoImpl usersBo = new UsersBoImpl();
+    UsersBoImpl usersBo = BoFactory.getInstance().getBo(BoType.USER);
 
     public void initialize(){
         txtConfirmPassword.setEditable(false);

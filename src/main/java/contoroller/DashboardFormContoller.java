@@ -1,7 +1,9 @@
 package contoroller;
 
 import Security.EmailService;
+import bo.BoFactory;
 import bo.custom.impl.*;
+import bo.util.BoType;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import dto.CustomerDto;
@@ -46,11 +48,6 @@ public class DashboardFormContoller {
     public JFXTextField txtAddress;
     public JFXComboBox cmbCategory;
     public JFXComboBox cmbItem;
-    private AddItemBoImpl addItemBo = new AddItemBoImpl();
-    private OrderBoimpl orderBoimpl = new OrderBoimpl();
-    private DashboardFormBoImpl dashboardFormBo = new DashboardFormBoImpl();
-    private InventoryBoimpl inventoryBoimpl = new InventoryBoimpl();
-    private CustomerBoImpl customerBoImpl = new CustomerBoImpl();
     @FXML
     private AnchorPane menu_pane;
 
@@ -58,6 +55,11 @@ public class DashboardFormContoller {
     private ObservableList<String> tricalelist = FXCollections.observableArrayList();
     private ObservableList<String> tronicList = FXCollections.observableArrayList();
     private ObservableList<InventoryTm> inventoryTms = FXCollections.observableArrayList();
+    private AddItemBoImpl addItemBo = BoFactory.getInstance().getBo(BoType.ITEM);
+    private OrderBoimpl orderBoimpl = BoFactory.getInstance().getBo(BoType.ORDER);
+    private DashboardFormBoImpl dashboardFormBo = BoFactory.getInstance().getBo(BoType.DASHBOARD);
+    private InventoryBoimpl inventoryBoimpl = BoFactory.getInstance().getBo(BoType.INVENTORY);
+    private CustomerBoImpl customerBoImpl = BoFactory.getInstance().getBo(BoType.CUSTOMER);
 
     public void clearFields(){
         txtCustomername.clear();

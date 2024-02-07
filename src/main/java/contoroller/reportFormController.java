@@ -1,7 +1,9 @@
 package contoroller;
+import bo.BoFactory;
 import bo.custom.impl.CustomerBoImpl;
 import bo.custom.impl.InventoryBoimpl;
 import bo.custom.impl.OrderBoimpl;
+import bo.util.BoType;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import dto.CustomerDto;
@@ -32,9 +34,9 @@ public class reportFormController {
     public JFXTextField txtContact;
     public JFXButton idBtn;
     public JFXButton btnContact;
-    CustomerBoImpl customerBo = new CustomerBoImpl();
-    InventoryBoimpl inventoryBoimpl = new InventoryBoimpl();
-    OrderBoimpl orderBoimpl = new OrderBoimpl();
+    CustomerBoImpl customerBo = BoFactory.getInstance().getBo(BoType.CUSTOMER);
+    InventoryBoimpl inventoryBoimpl = BoFactory.getInstance().getBo(BoType.INVENTORY);
+    OrderBoimpl orderBoimpl = BoFactory.getInstance().getBo(BoType.ORDER);
     public Label lblTopic;
 
     public void backBtnSetOnAction(ActionEvent actionEvent) throws IOException {

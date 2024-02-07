@@ -1,5 +1,7 @@
 package contoroller;
+import bo.BoFactory;
 import bo.custom.impl.UsersBoImpl;
+import bo.util.BoType;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
@@ -14,7 +16,7 @@ public class LoginFormController {
     public Label Logging;
     public JFXPasswordField textPassword;
     public JFXTextField txtxUserName;
-    UsersBoImpl usersBo = new UsersBoImpl();
+    UsersBoImpl usersBo = BoFactory.getInstance().getBo(BoType.USER);
 
     public void ForgetpasswordOnAction(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)Logging.getScene().getWindow();

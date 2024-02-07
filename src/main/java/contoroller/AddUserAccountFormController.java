@@ -1,5 +1,7 @@
 package contoroller;
+import bo.BoFactory;
 import bo.custom.impl.UsersBoImpl;
+import bo.util.BoType;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import dto.UsersDto;
@@ -27,7 +29,7 @@ public class AddUserAccountFormController {
     public TreeTableColumn colEmail;
     public TreeTableColumn colRole;
     public TreeTableColumn colOption;
-    private UsersBoImpl userAccountBo = new UsersBoImpl();
+    private UsersBoImpl userAccountBo = BoFactory.getInstance().getBo(BoType.USER);
 
     public void initialize(){
         colEmail.setCellValueFactory(new TreeItemPropertyValueFactory<>("email"));

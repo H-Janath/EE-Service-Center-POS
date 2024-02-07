@@ -1,9 +1,9 @@
 package contoroller;
 
+import bo.BoFactory;
 import bo.custom.InventoryBo;
 import bo.custom.OrderBo;
-import bo.custom.impl.InventoryBoimpl;
-import bo.custom.impl.OrderBoimpl;
+import bo.util.BoType;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import dto.CustIDOrderDto;
@@ -48,8 +48,8 @@ public class OrderFormContoller {
     public JFXComboBox status;
     public JFXTextField txtpart;
     public JFXTextField txtprice;
-    OrderBo orderBoimpl = new OrderBoimpl();
-    InventoryBo inventoryBoimpl = new InventoryBoimpl();
+    OrderBo orderBoimpl = BoFactory.getInstance().getBo(BoType.ORDER);
+    InventoryBo inventoryBoimpl = BoFactory.getInstance().getBo(BoType.INVENTORY);
 
 
     public void initialize(){

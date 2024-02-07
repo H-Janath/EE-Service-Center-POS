@@ -1,6 +1,8 @@
 package contoroller;
 
+import bo.BoFactory;
 import bo.custom.impl.AddItemBoImpl;
+import bo.util.BoType;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import dto.ItemDto;
@@ -30,7 +32,7 @@ public class AddItemFormController {
     public TreeTableColumn colCategory;
     public TreeTableColumn colOption;
     public JFXTreeTableView<ItemTm> itemTable;
-    private AddItemBoImpl addItemBo = new AddItemBoImpl();
+    private AddItemBoImpl addItemBo = BoFactory.getInstance().getBo(BoType.ITEM);
     public void initialize(){
         colitemCode.setCellValueFactory(new TreeItemPropertyValueFactory<>("itemId"));
         colName.setCellValueFactory(new TreeItemPropertyValueFactory<>("name"));
