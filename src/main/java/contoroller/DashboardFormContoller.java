@@ -31,8 +31,6 @@ import java.util.List;
 import java.util.Map;
 
 public class DashboardFormContoller {
-
-    public ComboBox cmbItem;
     public Label orderIdlbl;
     public JFXTextArea faultily;
     public TreeTableColumn colName;
@@ -46,6 +44,8 @@ public class DashboardFormContoller {
     public JFXTextField txtContactnum;
     public JFXTextField txtEmail;
     public JFXTextField txtAddress;
+    public JFXComboBox cmbCategory;
+    public JFXComboBox cmbItem;
     private AddItemBoImpl addItemBo = new AddItemBoImpl();
     private OrderBoimpl orderBoimpl = new OrderBoimpl();
     private DashboardFormBoImpl dashboardFormBo = new DashboardFormBoImpl();
@@ -53,13 +53,20 @@ public class DashboardFormContoller {
     private CustomerBoImpl customerBoImpl = new CustomerBoImpl();
     @FXML
     private AnchorPane menu_pane;
-    @FXML
-    private ComboBox cmbCategory;
+
     String id;
     private ObservableList<String> tricalelist = FXCollections.observableArrayList();
     private ObservableList<String> tronicList = FXCollections.observableArrayList();
     private ObservableList<InventoryTm> inventoryTms = FXCollections.observableArrayList();
 
+    public void clearFields(){
+        txtCustomername.clear();
+        txtContactnum.clear();
+        txtEmail.clear();
+        txtAddress.clear();
+        faultily.setText("");
+        itemdetailstble.getRoot().getChildren().clear();
+    }
     public void initialize() {
         colName.setCellValueFactory(new TreeItemPropertyValueFactory<>("Name"));
         colFault.setCellValueFactory(new TreeItemPropertyValueFactory<>("Fault"));
@@ -158,6 +165,9 @@ public class DashboardFormContoller {
                 inventoryBoimpl.saveInventoryItems(dtoList,orderDto.getCustomId());
                 orderIdlbl.setText(orderBoimpl.genertatOrderID());
                 generateAndSendBillList(dtoList);
+                new Alert(Alert.AlertType.INFORMATION,"Bill generated and sent successfully to Email").show();
+                clearFields();
+
             }
         }
         }

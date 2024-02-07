@@ -99,8 +99,6 @@ public class InventoryDaoImpl implements InventoryDao {
         }
         return null;
     }
-
-
     @Override
     public boolean save(Inventory entity) {
         return false;
@@ -119,5 +117,25 @@ public class InventoryDaoImpl implements InventoryDao {
     @Override
     public List<Inventory> getAll() {
         return null;
+    }
+
+
+    public boolean updateStatus(Long inventoryid, String status) {
+        try(Session session = HibernateUtill.getSession()){
+            Transaction transaction = session.beginTransaction();
+            Inventory inventory = session.get(Inventory.class,inventoryid);
+            if(inventory!=null){
+                System.out.println(inventory.getCustomId());
+                inventory.setStatus(status);
+                session.update(inventory);
+                transaction.commit();
+                return true;
+            }else {
+                return false;
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

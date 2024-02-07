@@ -4,6 +4,8 @@ import bo.custom.InventoryBo;
 import dao.custom.impl.InventoryDaoImpl;
 import dto.InventoryDto;
 import entity.Inventory;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,11 +27,14 @@ public class InventoryBoimpl implements InventoryBo<InventoryDto> {
         }
         return inventoryDao.saveList(inventorielist,customid);
     }
+    public boolean updateInventoryItem(String id,String status){
+        Long uniquid = Long.parseLong(id.split("IV")[1]);
+        return inventoryDao.updateStatus(uniquid,status);
+    }
     public String genertateInventoryID() {
         Inventory dto = inventoryDao.getLastItem();
         if (dto != null) {
-            String id = dto.getCustomId();
-            int num = Integer.parseInt(id.split("IV")[1]);
+            Long num = dto.getInventoryId();
             num++;
             return String.format("IV%04d", num);
         } else {
@@ -55,5 +60,14 @@ public class InventoryBoimpl implements InventoryBo<InventoryDto> {
                 return dtoList;
             }
             return null;
+    }
+
+    @Override
+    public ObservableList<String> getStatus() {
+        ObservableList<String> list = FXCollections.observableArrayList();
+        list.add("PENDING");
+        list.add("PROCESSING");
+        list.add("COMPLETED");
+        return list;
     }
 }

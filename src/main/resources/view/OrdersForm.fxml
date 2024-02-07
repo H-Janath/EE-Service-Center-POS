@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
 <?import java.lang.String?>
@@ -21,7 +23,7 @@
                             <children>
                                 <AnchorPane fx:id="menu_pane" layoutX="32.0" layoutY="83.0" prefHeight="779.0" prefWidth="1113.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
-                                        <AnchorPane layoutX="-1.0" layoutY="26.0" prefHeight="123.0" prefWidth="1290.0" style="-fx-background-color: #39C237;" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="26.0">
+                                        <AnchorPane layoutX="-1.0" layoutY="26.0" prefHeight="113.0" prefWidth="1290.0" style="-fx-background-color: #39C237;" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="26.0">
                                             <styleClass>
                                                 <String fx:value="radius" />
                                                 <String fx:value="white-bg" />
@@ -46,14 +48,14 @@
                                     <Button mnemonicParsing="false" onAction="#backBtnonAction" prefHeight="35.0" prefWidth="85.0" text="Back" />
                                             </children>
                                         </AnchorPane>
-                                        <AnchorPane layoutX="1.0" layoutY="173.0" prefHeight="294.0" prefWidth="1286.0" style="-fx-background-color: #39C237;" AnchorPane.bottomAnchor="312.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="173.0">
+                                        <AnchorPane layoutX="1.0" layoutY="161.0" prefHeight="149.0" prefWidth="1286.0" style="-fx-background-color: #39C237;" AnchorPane.bottomAnchor="469.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="161.0">
                                             <styleClass>
                                                 <String fx:value="radius" />
                                                 <String fx:value="white-bg" />
                                                 <String fx:value="shadow" />
                                             </styleClass>
                                             <children>
-                                                <JFXTreeTableView fx:id="ordersTable" layoutX="27.0" layoutY="28.0" prefHeight="400.0" prefWidth="981.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="28.0">
+                                                <JFXTreeTableView fx:id="ordersTable" layoutX="27.0" layoutY="18.0" prefHeight="118.0" prefWidth="1231.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="18.0">
                                                     <columns>
                                                         <TreeTableColumn fx:id="colOrderId" prefWidth="208.0" text="OrderID" />
                                                         <TreeTableColumn fx:id="colCustomerId" prefWidth="272.0" text="CustomerID" />
@@ -64,7 +66,7 @@
                                                 </JFXTreeTableView>
                                             </children>
                                         </AnchorPane>
-                              <AnchorPane layoutX="1.0" layoutY="482.0" prefHeight="283.0" prefWidth="1286.0" style="-fx-background-color: #39C237;" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="26.0">
+                              <AnchorPane layoutX="1.0" layoutY="338.0" prefHeight="283.0" prefWidth="1286.0" style="-fx-background-color: #39C237;" AnchorPane.bottomAnchor="158.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="26.0">
                                  <styleClass>
                                     <String fx:value="radius" />
                                     <String fx:value="white-bg" />
@@ -80,6 +82,19 @@
                                           <TreeTableColumn fx:id="colIStatus" prefWidth="232.0" text="Status" />
                                        </columns>
                                     </JFXTreeTableView>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="1.0" layoutY="637.0" prefHeight="117.0" prefWidth="1286.0" style="-fx-background-color: #39C237;">
+                                 <styleClass>
+                                    <String fx:value="radius" />
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <JFXComboBox fx:id="status" layoutX="251.0" layoutY="52.0" prefHeight="31.0" prefWidth="207.0" />
+                                    <JFXTextField layoutX="489.0" layoutY="52.0" prefHeight="31.0" prefWidth="266.0" promptText="Add additional part" />
+                                    <Label fx:id="lbl_inventoryid" layoutX="35.0" layoutY="51.0" prefHeight="33.0" prefWidth="199.0" />
+                                    <JFXButton layoutX="779.0" layoutY="50.0" prefHeight="33.0" prefWidth="79.0" text="Add" />
                                  </children>
                               </AnchorPane>
                                     </children>

@@ -1,11 +1,10 @@
 package contoroller;
 
+import bo.custom.InventoryBo;
+import bo.custom.OrderBo;
 import bo.custom.impl.InventoryBoimpl;
 import bo.custom.impl.OrderBoimpl;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXTreeTableView;
-import com.jfoenix.controls.RecursiveTreeItem;
+import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import dto.CustIDOrderDto;
 import dto.InventoryDto;
@@ -18,6 +17,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
@@ -42,15 +43,12 @@ public class OrderFormContoller {
     public TreeTableColumn colIStatus;
     public TreeTableColumn colFault;
     public JFXTreeTableView<InventoryTm2> inventoryTable;
+    public Label lbl_inventoryid;
+    public JFXComboBox status;
+    OrderBo orderBoimpl = new OrderBoimpl();
+    InventoryBo inventoryBoimpl = new InventoryBoimpl();
 
-    OrderBoimpl orderBoimpl = new OrderBoimpl();
-    InventoryBoimpl inventoryBoimpl = new InventoryBoimpl();
 
-    public void orderidsearchBtnSetAction(ActionEvent actionEvent) {
-    }
-
-    public void customerIDsearchBtnSetAction(ActionEvent actionEvent) {
-    }
     public void initialize(){
         colOrderId.setCellValueFactory(new TreeItemPropertyValueFactory<>("orderId"));
         colCustomerId.setCellValueFactory(new TreeItemPropertyValueFactory<>("customerID"));
@@ -65,6 +63,32 @@ public class OrderFormContoller {
         colIStatus.setCellValueFactory(new TreeItemPropertyValueFactory<>("status"));
         colFault.setCellValueFactory(new TreeItemPropertyValueFactory<>("fault"));
         loadOrderTable();
+        loadStatus();
+
+
+        status.getSelectionModel().selectedItemProperty().addListener((observable,oldvalue,id)->{
+            boolean sccesfull;
+            if(observable.getValue().equals("PENDING")){
+                 sccesfull = inventoryBoimpl.updateInventoryItem(lbl_inventoryid.getText(),"PENDING");
+            } else if (observable.getValue().equals("PROCESSING")) {
+                 sccesfull = inventoryBoimpl.updateInventoryItem(lbl_inventoryid.getText(),"PROCESSING");
+            }else{
+                 sccesfull = inventoryBoimpl.updateInventoryItem(lbl_inventoryid.getText(),"COMPLETED");
+            }
+            if(sccesfull){
+                new Alert(Alert.AlertType.INFORMATION,"successfull").show();
+            }else {
+                new Alert(Alert.AlertType.ERROR,"Unsuccessfull").show();
+            }
+
+        });
+        inventoryTable.setOnMouseClicked(event -> {
+            if(event.getClickCount()==1&&(!inventoryTable.getSelectionModel().isEmpty())){
+                TreeItem<InventoryTm2> item = inventoryTable.getSelectionModel().getSelectedItem();
+                lbl_inventoryid.setText(item.getValue().getId());
+            }
+        });
+
         ordersTable.setOnMouseClicked(event -> {
             if(event.getClickCount()==1&&(!ordersTable.getSelectionModel().isEmpty())){
                 TreeItem<OrdersTm> item = ordersTable.getSelectionModel().getSelectedItem();
@@ -114,6 +138,12 @@ public class OrderFormContoller {
 
     }
 
+    private void loadStatus() {
+        ObservableList<String> statusList = inventoryBoimpl.getStatus();
+        status.setItems(statusList);
+    }
+
+
     private void loadOrderTable() {
         ObservableList<OrdersTm> ordersTms = FXCollections.observableArrayList();
         List<CustIDOrderDto> custIDOrderDtos = orderBoimpl.allOrders();
@@ -153,4 +183,10 @@ public class OrderFormContoller {
         stage.centerOnScreen();
         stage.show();
     }
+    public void orderidsearchBtnSetAction(ActionEvent actionEvent) {
+    }
+
+    public void customerIDsearchBtnSetAction(ActionEvent actionEvent) {
+    }
+
 }
