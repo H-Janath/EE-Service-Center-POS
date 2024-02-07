@@ -72,7 +72,7 @@ public class OrderFormContoller {
                     int numericValue  = Integer.parseInt(item.getValue().getOrderId().replaceAll("\\D*(\\d+).*", "$1"));
                     List<InventoryDto> dtoList = inventoryBoimpl.getOrderDetails(numericValue);
                     for(InventoryDto dto:dtoList){
-                        System.out.println(dto.getName());
+
                         tmList.add(
                                 new InventoryTm2(
                                         dto.getCustomId(),

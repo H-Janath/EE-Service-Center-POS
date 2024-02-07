@@ -1,4 +1,6 @@
 package contoroller;
+
+import Security.EmailService;
 import bo.custom.impl.*;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
@@ -17,11 +19,16 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DashboardFormContoller {
 
@@ -150,6 +157,7 @@ public class DashboardFormContoller {
                 }
                 inventoryBoimpl.saveInventoryItems(dtoList,orderDto.getCustomId());
                 orderIdlbl.setText(orderBoimpl.genertatOrderID());
+                generateAndSendBillList(dtoList);
             }
         }
         }
@@ -161,7 +169,35 @@ public class DashboardFormContoller {
         stage.setTitle("Orders Form");
         stage.show();
     }
+    private void generateAndSendBillList(List<InventoryDto> inventories) {
+        try {
+            // Load JasperReport template
+            String reportFilePath = "src/main/resources/report/OrderDetailsReport.jrxml";
+            JasperReport jasperReport = JasperCompileManager.compileReport(reportFilePath);
 
+            // Use the customerList as the data source for the report
+            JRDataSource dataSource = new JRBeanCollectionDataSource(inventories);
+
+            // Create an empty Map as there are no specific parameters for the report
+            Map<String, Object> parameters = new HashMap<>();
+
+            // Fill the report using the JasperFillManager with parameters
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+            // Specify the file path where you want to save the generated bill
+            String saveFilePath = "src/main/resources/bills/bill.pdf";
+
+            // Generate and save the bill as a PDF file
+            JasperExportManager.exportReportToPdfFile(jasperPrint, saveFilePath);
+
+            // Send the generated bill to the customer's email
+            String customerEmail = "janathhma@gmail.com"; // Replace with actual customer email
+            EmailService.sendEmailWithAttachment(customerEmail, "Your Order Bill", "Please find attached your order bill.", saveFilePath);
+
+            System.out.println("Bill generated and sent successfully.");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
     public void CUSTOMERS_btoSetONAction(ActionEvent actionEvent) {
     }
 

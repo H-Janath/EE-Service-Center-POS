@@ -128,7 +128,6 @@ public class reportFormController {
             List<OrderDto> orderDtos = orderBoimpl.findOrders(phone);
             List<OrdersTm> orderslist = new ArrayList<>();
             for(OrderDto orderDto: orderDtos){
-                System.out.println(orderDto.getCustomId());
                 orderslist.add(
                         new OrdersTm(
                                 orderDto.getCustomId(),
