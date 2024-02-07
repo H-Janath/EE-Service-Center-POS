@@ -1,7 +1,9 @@
 package bo.custom.impl;
 
 import bo.custom.AdditemBo;
+import dao.DaoFactory;
 import dao.custom.impl.AdditemDaoImpl;
+import dao.utill.DaoType;
 import dto.ItemDto;
 import entity.Item;
 import javafx.collections.FXCollections;
@@ -11,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AddItemBoImpl implements AdditemBo<ItemDto> {
-    AdditemDaoImpl additemDao = new AdditemDaoImpl();
+    AdditemDaoImpl additemDao = DaoFactory.getInstance().getDao(DaoType.ITEM);
 
     public boolean saveItem(ItemDto itemDto){
         return additemDao.save(

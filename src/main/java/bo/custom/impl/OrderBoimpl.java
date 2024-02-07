@@ -1,7 +1,9 @@
 package bo.custom.impl;
 
 import bo.custom.OrderBo;
+import dao.DaoFactory;
 import dao.custom.impl.OrderDaoImpl;
+import dao.utill.DaoType;
 import dto.CustIDOrderDto;
 import dto.OrderDto;
 import entity.Orders;
@@ -10,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderBoimpl implements OrderBo {
-    private OrderDaoImpl orderDao = new OrderDaoImpl();
+    private OrderDaoImpl orderDao = DaoFactory.getInstance().getDao(DaoType.ORDER);
 
     public boolean saveOrder(OrderDto orderDto,String customId){
         return orderDao.saveOrder(

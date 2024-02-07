@@ -2,7 +2,9 @@ package bo.custom.impl;
 
 import Security.PassEncTech2;
 import bo.custom.UserBo;
+import dao.DaoFactory;
 import dao.custom.impl.UserDaoImpl;
+import dao.utill.DaoType;
 import dto.UsersDto;
 import entity.Users;
 import javafx.collections.FXCollections;
@@ -14,7 +16,7 @@ import java.util.List;
 
 public class UsersBoImpl implements UserBo<UsersDto> {
 
-    private UserDaoImpl userDao = new UserDaoImpl();
+    private UserDaoImpl userDao = DaoFactory.getInstance().getDao(DaoType.USER);
     public UsersDto searchUser(String email){
         Users user = userDao.search(email);
         if(user!=null) {

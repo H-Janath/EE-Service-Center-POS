@@ -1,15 +1,18 @@
 package bo.custom.impl;
+
 import bo.custom.DashboardFormBo;
+import dao.DaoFactory;
 import dao.custom.AdditemDao;
-import dao.custom.impl.AdditemDaoImpl;
+import dao.utill.DaoType;
 import dto.ItemDto;
 import entity.Item;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class DashboardFormBoImpl implements DashboardFormBo<ItemDto> {
-    AdditemDao additemDao = new AdditemDaoImpl();
+    AdditemDao additemDao = DaoFactory.getInstance().getDao(DaoType.ITEM);
 
 
     public List<ItemDto> getElectricItem() {
