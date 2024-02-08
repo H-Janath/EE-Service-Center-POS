@@ -75,7 +75,8 @@
                                                     <columns>
                                                         <TreeTableColumn fx:id="colName" prefWidth="202.0" text="Name" />
                                                         <TreeTableColumn fx:id="colCategory" prefWidth="199.0" text="Category" />
-                                                        <TreeTableColumn fx:id="colIStatus" prefWidth="264.0" text="Status" />
+                                                        <TreeTableColumn fx:id="colIStatus" prefWidth="176.0" text="Status" />
+                                          <TreeTableColumn fx:id="colid" prefWidth="122.0" text="id" />
                                                     </columns>
                                                 </JFXTreeTableView>
                                     <JFXTreeTableView fx:id="partsTable" layoutX="731.0" layoutY="28.0" prefHeight="228.0" prefWidth="528.0">

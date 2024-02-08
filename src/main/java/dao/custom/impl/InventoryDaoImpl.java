@@ -167,4 +167,25 @@ public class InventoryDaoImpl implements InventoryDao {
             return false;
         }
     }
+
+    public List<Parts> getParts(int invetoryId) {
+        try (Session session = HibernateUtill.getSession()) {
+            Transaction transaction = session.beginTransaction();
+            // Assuming orderId is a variable, you should use a parameterized query to avoid SQL injection
+            String hql = "FROM Parts WHERE inventoryid = :inventoryid";
+
+            // Assuming you have a Query object available
+            Query<Parts> query = session.createQuery(hql, Parts.class);
+            query.setParameter("inventoryid", invetoryId);
+
+            // Retrieve the list of Inventory entities
+            List<Parts> inventoryList = query.list();
+            return inventoryList;
+            // Use 'inventoryList' as needed
+        } catch (Exception e) {
+            // Handle exceptions
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

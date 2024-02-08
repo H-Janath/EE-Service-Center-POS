@@ -42,7 +42,21 @@ public class InventoryBoimpl implements InventoryBo<InventoryDto> {
                 new Parts(parts.getName(),parts.getCost())
                 ,Long.parseLong(inventoryid.split("IV")[1]));
     }
-
+    public List<PartsDto> getParts(int invetoryId) {
+        List<Parts> partsList = inventoryDao.getParts(invetoryId);
+        List<PartsDto> dtoList = new ArrayList<>();
+        if(dtoList!=null){
+            for (Parts parts: partsList){
+                dtoList.add(
+                        new PartsDto(
+                                parts.getName(),
+                                parts.getCost()
+                        )
+                );
+            }
+        }
+        return dtoList;
+    }
     public String genertateInventoryID() {
         Inventory dto = inventoryDao.getLastItem();
         if (dto != null) {

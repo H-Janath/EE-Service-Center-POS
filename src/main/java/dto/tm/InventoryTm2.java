@@ -14,9 +14,10 @@ public class InventoryTm2 extends RecursiveTreeObject<InventoryTm2> {
     private String Fault;
     private String Status;
 
-    public InventoryTm2(String name, String category, String status) {
-        Name = name;
-        Category = category;
-        Status = status;
+    public InventoryTm2(String id,String name, String category, String status) {
+        this.id = id;
+        this.Name = name;
+        this.Category = category;
+        this.Status = status;
     }
 }

@@ -15,4 +15,6 @@ public interface InventoryBo<T> extends SuperBo {
     public boolean updateInventoryItem(String id, String pending);
 
     public boolean addParts(PartsDto parts, String inventoryId);
+    public List<PartsDto> getParts(int invetoryId);
+
 }

@@ -10,8 +10,10 @@ import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import dto.CustIDOrderDto;
 import dto.InventoryDto;
+import dto.PartsDto;
 import dto.tm.InventoryTm2;
 import dto.tm.OrdersTm;
+import dto.tm.PartsTm;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -53,6 +55,7 @@ public class CashierFormController {
     public JFXTreeTableView ordersTable;
     public JFXTreeTableView inventoryTable;
     public JFXTreeTableView partsTable;
+    public TreeTableColumn colid;
 
     private OrderBo orderBo = BoFactory.getInstance().getBo(BoType.ORDER);
     private InventoryBo inventoryBo = BoFactory.getInstance().getBo(BoType.INVENTORY);
@@ -65,6 +68,7 @@ public class CashierFormController {
         colName.setCellValueFactory(new TreeItemPropertyValueFactory<>("Name"));
         colCategory.setCellValueFactory(new TreeItemPropertyValueFactory<>("Category"));
         colIStatus.setCellValueFactory(new TreeItemPropertyValueFactory<>("Status"));
+        colid.setCellValueFactory(new TreeItemPropertyValueFactory<>("id"));
 
         colParts.setCellValueFactory(new TreeItemPropertyValueFactory<>("name"));
         colCost.setCellValueFactory(new TreeItemPropertyValueFactory<>("price"));
@@ -80,26 +84,7 @@ public class CashierFormController {
                 for(InventoryDto dto:dtoList){
                     tmList.add(
                             new InventoryTm2(
-                                    dto.getName(),
-                                    dto.getCategory(),
-                                    dto.getStatus()
-                            )
-                    );
-                }
-                TreeItem<InventoryTm2> treeItem = new RecursiveTreeItem<>(tmList,RecursiveTreeObject::getChildren);
-                inventoryTable.setRoot(treeItem);
-                inventoryTable.setShowRoot(false);
-            }
-        });
-        inventoryTable.setOnMouseClicked(event -> {
-            if(event.getClickCount()==1&&(!inventoryTable.getSelectionModel().isEmpty())){
-                TreeItem<InventoryTm2> item = (TreeItem<InventoryTm2>) inventoryTable.getSelectionModel().getSelectedItem();
-                ObservableList<InventoryTm2> tmList = FXCollections.observableArrayList();
-                int numericValue  = Integer.parseInt(item.getValue().getId().replaceAll("\\D*(\\d+).*", "$1"));
-                List<InventoryDto> dtoList = inventoryBo.getOrderDetails(numericValue);
-                for(InventoryDto dto:dtoList){
-                    tmList.add(
-                            new InventoryTm2(
+                                    dto.getCustomId(),
                                     dto.getName(),
                                     dto.getCategory(),
                                     dto.getStatus()
@@ -110,9 +95,28 @@ public class CashierFormController {
                 inventoryTable.setRoot(treeItem);
                 inventoryTable.setShowRoot(false);
 
-
+                double partcost=0;
+                ObservableList<PartsTm> partsTms = FXCollections.observableArrayList();
+                for(InventoryDto inventoryDto: dtoList){
+                    int id = Integer.parseInt(inventoryDto.getCustomId().replaceAll("\\D*(\\d+).*", "$1"));
+                    List<PartsDto> partsDtos = inventoryBo.getParts(id);
+                    for (PartsDto partsDto: partsDtos){
+                        partsTms.add(
+                                new PartsTm(
+                                        partsDto.getName(),
+                                        partsDto.getCost()
+                                )
+                        );
+                        partcost+=partsDto.getCost();
+                    }
+                }
+                lblbtotalparts.setText(String.valueOf(partcost));
+                TreeItem<PartsTm> tmTreeItem = new RecursiveTreeItem<>(partsTms,RecursiveTreeObject::getChildren);
+                partsTable.setRoot(tmTreeItem);
+                partsTable.setShowRoot(false);
             }
         });
+
 
     }
 
