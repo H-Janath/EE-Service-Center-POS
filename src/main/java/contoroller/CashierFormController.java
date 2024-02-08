@@ -1,6 +1,7 @@
 package contoroller;
 
 import bo.BoFactory;
+import bo.custom.InventoryBo;
 import bo.custom.OrderBo;
 import bo.util.BoType;
 import com.jfoenix.controls.JFXTextField;
@@ -8,6 +9,8 @@ import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import dto.CustIDOrderDto;
+import dto.InventoryDto;
+import dto.tm.InventoryTm2;
 import dto.tm.OrdersTm;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -52,6 +55,7 @@ public class CashierFormController {
     public JFXTreeTableView partsTable;
 
     private OrderBo orderBo = BoFactory.getInstance().getBo(BoType.ORDER);
+    private InventoryBo inventoryBo = BoFactory.getInstance().getBo(BoType.INVENTORY);
     public void initialize(){
         colOrderId.setCellValueFactory(new TreeItemPropertyValueFactory<>("orderId"));
         colCustomerId.setCellValueFactory(new TreeItemPropertyValueFactory<>("customerID"));
@@ -66,6 +70,49 @@ public class CashierFormController {
         colCost.setCellValueFactory(new TreeItemPropertyValueFactory<>("price"));
 
         LoadOrderTable();
+
+        ordersTable.setOnMouseClicked(event -> {
+            if(event.getClickCount()==1&&(!ordersTable.getSelectionModel().isEmpty())){
+                TreeItem<OrdersTm> item = (TreeItem<OrdersTm>) ordersTable.getSelectionModel().getSelectedItem();
+                ObservableList<InventoryTm2> tmList = FXCollections.observableArrayList();
+                int numericValue  = Integer.parseInt(item.getValue().getOrderId().replaceAll("\\D*(\\d+).*", "$1"));
+                List<InventoryDto> dtoList = inventoryBo.getOrderDetails(numericValue);
+                for(InventoryDto dto:dtoList){
+                    tmList.add(
+                            new InventoryTm2(
+                                    dto.getName(),
+                                    dto.getCategory(),
+                                    dto.getStatus()
+                            )
+                    );
+                }
+                TreeItem<InventoryTm2> treeItem = new RecursiveTreeItem<>(tmList,RecursiveTreeObject::getChildren);
+                inventoryTable.setRoot(treeItem);
+                inventoryTable.setShowRoot(false);
+            }
+        });
+        inventoryTable.setOnMouseClicked(event -> {
+            if(event.getClickCount()==1&&(!inventoryTable.getSelectionModel().isEmpty())){
+                TreeItem<InventoryTm2> item = (TreeItem<InventoryTm2>) inventoryTable.getSelectionModel().getSelectedItem();
+                ObservableList<InventoryTm2> tmList = FXCollections.observableArrayList();
+                int numericValue  = Integer.parseInt(item.getValue().getId().replaceAll("\\D*(\\d+).*", "$1"));
+                List<InventoryDto> dtoList = inventoryBo.getOrderDetails(numericValue);
+                for(InventoryDto dto:dtoList){
+                    tmList.add(
+                            new InventoryTm2(
+                                    dto.getName(),
+                                    dto.getCategory(),
+                                    dto.getStatus()
+                            )
+                    );
+                }
+                TreeItem<InventoryTm2> treeItem = new RecursiveTreeItem<>(tmList,RecursiveTreeObject::getChildren);
+                inventoryTable.setRoot(treeItem);
+                inventoryTable.setShowRoot(false);
+
+
+            }
+        });
 
     }
 

@@ -4,6 +4,7 @@ import bo.custom.impl.UsersBoImpl;
 import bo.util.BoType;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import dto.UsersDto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -29,13 +30,23 @@ public class LoginFormController {
     public void loginBtnSetOnAction(ActionEvent actionEvent) {
         String name = txtxUserName.getText();
         String password = textPassword.getText();
+        UsersDto usersDto = usersBo.searchUser(name);
+
         try {
             boolean isValied = usersBo.checkValidityofCredintial(name,password);
             if(isValied){
-                new Alert(Alert.AlertType.INFORMATION,"Login Successful").show();
-                Stage stage = (Stage) txtxUserName.getScene().getWindow();
-                stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/DashboardFormController.fxml"))));
-                stage.show();
+                if(usersDto.getRole().equals("ADMIN")){
+                    new Alert(Alert.AlertType.INFORMATION,"Login Successful").show();
+                    Stage stage = (Stage) txtxUserName.getScene().getWindow();
+                    stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/AdminDashboardFormController.fxml"))));
+                    stage.show();
+                }else {
+                    new Alert(Alert.AlertType.INFORMATION,"Login Successful").show();
+                    Stage stage = (Stage) txtxUserName.getScene().getWindow();
+                    stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/NormalDashboardFormController.fxml"))));
+                    stage.show();
+                }
+
             }else {
                 new Alert(Alert.AlertType.ERROR,"Login unsuccessful").show();
             }

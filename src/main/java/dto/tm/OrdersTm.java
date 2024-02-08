@@ -1,5 +1,4 @@
 package dto.tm;
-
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

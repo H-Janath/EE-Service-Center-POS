@@ -33,7 +33,6 @@ public class OrderFormContoller {
     public JFXTextField txtCustomerID;
     public JFXTextField txtOrderID;
     public TreeTableColumn colStatus;
-    public TreeTableColumn colOption;
     public TreeTableColumn colOrderId;
     public TreeTableColumn colCustomerId;
     public TreeTableColumn colDate;
@@ -98,7 +97,6 @@ public class OrderFormContoller {
                     int numericValue  = Integer.parseInt(item.getValue().getOrderId().replaceAll("\\D*(\\d+).*", "$1"));
                     List<InventoryDto> dtoList = inventoryBoimpl.getOrderDetails(numericValue);
                     for(InventoryDto dto:dtoList){
-
                         tmList.add(
                                 new InventoryTm2(
                                         dto.getCustomId(),
@@ -114,6 +112,7 @@ public class OrderFormContoller {
                     inventoryTable.setShowRoot(false);
             }
         });
+
 
         txtOrderID.textProperty().addListener(new ChangeListener<String>() {
             @Override
