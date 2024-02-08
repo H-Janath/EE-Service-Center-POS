@@ -78,7 +78,7 @@
                                                         <TreeTableColumn fx:id="colIStatus" prefWidth="264.0" text="Status" />
                                                     </columns>
                                                 </JFXTreeTableView>
-                                    <JFXTreeTableView fx:id="inventoryTable1" layoutX="731.0" layoutY="28.0" prefHeight="228.0" prefWidth="528.0">
+                                    <JFXTreeTableView fx:id="partsTable" layoutX="731.0" layoutY="28.0" prefHeight="228.0" prefWidth="528.0">
                                        <columns>
                                           <TreeTableColumn fx:id="colParts" prefWidth="278.0" text="Part" />
                                           <TreeTableColumn fx:id="colCost" prefWidth="249.0" text="Cost" />

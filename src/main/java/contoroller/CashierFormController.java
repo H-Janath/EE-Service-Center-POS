@@ -4,6 +4,9 @@ import bo.BoFactory;
 import bo.custom.OrderBo;
 import bo.util.BoType;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXTreeTableView;
+import com.jfoenix.controls.RecursiveTreeItem;
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import dto.CustIDOrderDto;
 import dto.tm.OrdersTm;
 import javafx.collections.FXCollections;
@@ -12,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.stage.Stage;
@@ -43,6 +47,9 @@ public class CashierFormController {
     public JFXTextField txtservicecost;
 
     public Label lblTotal;
+    public JFXTreeTableView ordersTable;
+    public JFXTreeTableView inventoryTable;
+    public JFXTreeTableView partsTable;
 
     private OrderBo orderBo = BoFactory.getInstance().getBo(BoType.ORDER);
     public void initialize(){
@@ -75,6 +82,9 @@ public class CashierFormController {
                     )
             );
         }
+        TreeItem<OrdersTm> treeItem = new RecursiveTreeItem<>(ordersTms, RecursiveTreeObject::getChildren);
+        ordersTable.setRoot(treeItem);
+        ordersTable.setShowRoot(false);
     }
 
     public void backBtnonAction(ActionEvent actionEvent) throws IOException {
