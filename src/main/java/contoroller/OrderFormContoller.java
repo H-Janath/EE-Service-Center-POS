@@ -56,7 +56,6 @@ public class OrderFormContoller {
         colOrderId.setCellValueFactory(new TreeItemPropertyValueFactory<>("orderId"));
         colCustomerId.setCellValueFactory(new TreeItemPropertyValueFactory<>("customerID"));
         colDate.setCellValueFactory(new TreeItemPropertyValueFactory<>("date"));
-        colOption.setCellValueFactory(new TreeItemPropertyValueFactory<>("option"));
         colStatus.setCellValueFactory(new TreeItemPropertyValueFactory<>("status"));
 
 
@@ -151,23 +150,14 @@ public class OrderFormContoller {
         ObservableList<OrdersTm> ordersTms = FXCollections.observableArrayList();
         List<CustIDOrderDto> custIDOrderDtos = orderBoimpl.allOrders();
         for(CustIDOrderDto custIDOrderDto: custIDOrderDtos){
-            JFXButton button = new JFXButton("More");
             ordersTms.add(
                     new OrdersTm(
                             custIDOrderDto.getCustID(),
                             custIDOrderDto.getCustomId(),
                             custIDOrderDto.getDate(),
-                            custIDOrderDto.getStatus(),
-                            button
+                            custIDOrderDto.getStatus()
                     )
             );
-            button.setOnAction(ActionEvent->{
-                try {
-                    displayInventory(custIDOrderDto.getCustID());
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            });
         }
         TreeItem<OrdersTm> treeItem= new RecursiveTreeItem<>(ordersTms, RecursiveTreeObject::getChildren);
         ordersTable.setRoot(treeItem);

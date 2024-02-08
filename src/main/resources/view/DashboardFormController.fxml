@@ -39,7 +39,7 @@
                                     <Font name="Berlin Sans FB" size="29.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton layoutX="10.0" layoutY="171.0" onAction="#INVENTORY_btnSetOnAction" prefHeight="62.0" prefWidth="227.0" styleClass="btn" stylesheets="@../styles/dashboard.css" text="INVENTORY">
+                              <JFXButton layoutX="10.0" layoutY="171.0" onAction="#CASHIER_btnSetOnAction" prefHeight="62.0" prefWidth="227.0" styleClass="btn" stylesheets="@../styles/dashboard.css" text="CASHIER">
                                  <font>
                                     <Font name="Berlin Sans FB" size="29.0" />
                                  </font>

@@ -342,4 +342,11 @@ public class DashboardFormContoller {
     }
 
 
+    public void CASHIER_btnSetOnAction(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage)menu_pane.getScene().getWindow();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/CashierForm.fxml"))));
+        stage.centerOnScreen();
+        stage.setTitle("Orders Form");
+        stage.show();
+    }
 }

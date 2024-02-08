@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
 <?import java.lang.String?>
@@ -13,7 +12,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="779.0" prefWidth="1345.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="contoroller.OrderFormContoller">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="779.0" prefWidth="1345.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="contoroller.CashierFormController">
     <children>
         <AnchorPane prefHeight="200.0" prefWidth="200.0">
             <children>
@@ -45,7 +44,7 @@
                                                         <Font name="System Bold" size="15.0" />
                                                     </font>
                                                 </JFXTextField>
-                                    <Button mnemonicParsing="false" onAction="#backBtnonAction" prefHeight="35.0" prefWidth="85.0" text="Back" />
+                                                <Button mnemonicParsing="false" onAction="#backBtnonAction" prefHeight="35.0" prefWidth="85.0" text="Back" />
                                             </children>
                                         </AnchorPane>
                                         <AnchorPane layoutX="1.0" layoutY="161.0" prefHeight="149.0" prefWidth="1286.0" style="-fx-background-color: #39C237;" AnchorPane.bottomAnchor="469.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="161.0">
@@ -58,58 +57,71 @@
                                                 <JFXTreeTableView fx:id="ordersTable" layoutX="27.0" layoutY="18.0" prefHeight="118.0" prefWidth="1231.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="18.0">
                                                     <columns>
                                                         <TreeTableColumn fx:id="colOrderId" prefWidth="208.0" text="OrderID" />
-                                                        <TreeTableColumn fx:id="colCustomerId" prefWidth="359.0" text="CustomerID" />
-                                                        <TreeTableColumn fx:id="colDate" prefWidth="356.0" text="Date" />
-                                                        <TreeTableColumn fx:id="colStatus" prefWidth="307.0" text="Status" />
+                                                        <TreeTableColumn fx:id="colCustomerId" prefWidth="339.0" text="CustomerID" />
+                                                        <TreeTableColumn fx:id="colDate" prefWidth="380.0" text="Date" />
+                                                        <TreeTableColumn fx:id="colStatus" prefWidth="303.0" text="Status" />
                                                     </columns>
                                                 </JFXTreeTableView>
                                             </children>
                                         </AnchorPane>
-                              <AnchorPane layoutX="1.0" layoutY="338.0" prefHeight="283.0" prefWidth="1286.0" style="-fx-background-color: #39C237;" AnchorPane.bottomAnchor="158.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="26.0">
-                                 <styleClass>
-                                    <String fx:value="radius" />
-                                    <String fx:value="white-bg" />
-                                    <String fx:value="shadow" />
-                                 </styleClass>
-                                 <children>
-                                    <JFXTreeTableView fx:id="inventoryTable" layoutX="27.0" layoutY="28.0" prefHeight="400.0" prefWidth="981.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="28.0">
+                                        <AnchorPane layoutX="1.0" layoutY="338.0" prefHeight="283.0" prefWidth="1286.0" style="-fx-background-color: #39C237;" AnchorPane.bottomAnchor="158.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="26.0">
+                                            <styleClass>
+                                                <String fx:value="radius" />
+                                                <String fx:value="white-bg" />
+                                                <String fx:value="shadow" />
+                                            </styleClass>
+                                            <children>
+                                                <JFXTreeTableView fx:id="inventoryTable" layoutX="27.0" layoutY="28.0" prefHeight="228.0" prefWidth="668.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="591.0" AnchorPane.topAnchor="28.0">
+                                                    <columns>
+                                                        <TreeTableColumn fx:id="colName" prefWidth="202.0" text="Name" />
+                                                        <TreeTableColumn fx:id="colCategory" prefWidth="199.0" text="Category" />
+                                                        <TreeTableColumn fx:id="colIStatus" prefWidth="264.0" text="Status" />
+                                                    </columns>
+                                                </JFXTreeTableView>
+                                    <JFXTreeTableView fx:id="inventoryTable1" layoutX="731.0" layoutY="28.0" prefHeight="228.0" prefWidth="528.0">
                                        <columns>
-                                          <TreeTableColumn fx:id="colInventoryid" prefWidth="208.0" text="Inventory ID" />
-                                          <TreeTableColumn fx:id="colName" prefWidth="202.0" text="Name" />
-                                          <TreeTableColumn fx:id="colCategory" prefWidth="250.0" text="Category" />
-                                          <TreeTableColumn fx:id="colFault" prefWidth="338.0" text="Fault" />
-                                          <TreeTableColumn fx:id="colIStatus" prefWidth="232.0" text="Status" />
+                                          <TreeTableColumn fx:id="colParts" prefWidth="278.0" text="Part" />
+                                          <TreeTableColumn fx:id="colCost" prefWidth="249.0" text="Cost" />
                                        </columns>
                                     </JFXTreeTableView>
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane layoutX="1.0" layoutY="637.0" prefHeight="117.0" prefWidth="1286.0" style="-fx-background-color: #39C237;" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="26.0">
-                                 <styleClass>
-                                    <String fx:value="radius" />
-                                    <String fx:value="white-bg" />
-                                    <String fx:value="shadow" />
-                                 </styleClass>
-                                 <children>
-                                    <JFXComboBox fx:id="status" layoutX="197.0" layoutY="55.0" prefHeight="31.0" prefWidth="207.0" />
-                                    <Label fx:id="lbl_inventoryid" layoutX="35.0" layoutY="51.0" prefHeight="33.0" prefWidth="136.0">
-                                       <font>
-                                          <Font name="System Bold" size="21.0" />
-                                       </font></Label>
-                                    <JFXButton layoutX="1009.0" layoutY="45.0" onAction="#addbtnAction" prefHeight="33.0" prefWidth="79.0" text="Add">
-                                       <font>
-                                          <Font size="21.0" />
-                                       </font></JFXButton>
-                                    <JFXTextField fx:id="txtpart" layoutX="442.0" layoutY="52.0" prefHeight="37.0" prefWidth="238.0" promptText="Add additional part">
-                                       <font>
-                                          <Font name="System Bold" size="16.0" />
-                                       </font></JFXTextField>
-                                    <JFXTextField fx:id="txtprice" layoutX="708.0" layoutY="52.0" prefHeight="37.0" prefWidth="239.0" promptText="price">
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane layoutX="1.0" layoutY="637.0" prefHeight="117.0" prefWidth="1286.0" style="-fx-background-color: #39C237;" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="26.0">
+                                            <styleClass>
+                                                <String fx:value="radius" />
+                                                <String fx:value="white-bg" />
+                                                <String fx:value="shadow" />
+                                            </styleClass>
+                                            <children>
+                                                <Label fx:id="lblbtotalparts" layoutX="35.0" layoutY="51.0" prefHeight="39.0" prefWidth="163.0">
+                                                    <font>
+                                                        <Font name="System Bold" size="21.0" />
+                                                    </font></Label>
+                                                <JFXButton layoutX="770.0" layoutY="48.0" onAction="#proceedbtnAction" prefHeight="45.0" prefWidth="185.0" text="Proceed">
+                                                    <font>
+                                                        <Font size="21.0" />
+                                                    </font></JFXButton>
+                                                <JFXTextField fx:id="txtservicecost" layoutX="234.0" layoutY="52.0" prefHeight="37.0" prefWidth="238.0" promptText="Service cost">
+                                                    <font>
+                                                        <Font name="System Bold" size="16.0" />
+                                                    </font></JFXTextField>
+                                    <Label layoutX="35.0" layoutY="14.0" prefHeight="39.0" prefWidth="161.0" text="Additional part cost">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
-                                    </JFXTextField>
-                                 </children>
-                              </AnchorPane>
+                                    </Label>
+                                    <Label fx:id="lblTotal" layoutX="497.0" layoutY="51.0" prefHeight="39.0" prefWidth="163.0">
+                                       <font>
+                                          <Font name="System Bold" size="21.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="498.0" layoutY="14.0" prefHeight="39.0" prefWidth="161.0" text="Total">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                            </children>
+                                        </AnchorPane>
                                     </children>
                                 </AnchorPane>
                             </children></AnchorPane>

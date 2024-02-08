@@ -1,5 +1,4 @@
 package dao.custom.impl;
-
 import dao.custom.CustomerDao;
 import dao.utill.HibernateUtill;
 import entity.Customer;
@@ -9,7 +8,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
-
 import java.util.ArrayList;
 import java.util.List;
 

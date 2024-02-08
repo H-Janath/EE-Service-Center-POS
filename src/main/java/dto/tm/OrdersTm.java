@@ -1,6 +1,5 @@
 package dto.tm;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,14 +16,13 @@ public class OrdersTm extends RecursiveTreeObject<OrdersTm> {
     private String date;
     private String status;
     private double amount;
-    private JFXButton option;
 
-    public OrdersTm(String orderId, String customerID, String date, String status, JFXButton option) {
+
+    public OrdersTm(String orderId, String customerID, String date, String status) {
         this.orderId = orderId;
         this.customerID = customerID;
         this.date = date;
         this.status = status;
-        this.option = option;
     }
 
     public OrdersTm(String customerID, String date, String status,double amount) {
